@@ -1,0 +1,26 @@
+@use "../base/variables" as *;
+
+.solutions {
+  background-color: $color-white;
+
+  &__grid {
+    display: grid;
+    // 3 колонки одинаковой ширины
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 24px; // Отступ между карточками
+  }
+}
+
+// Адаптивность по ТЗ
+@media (max-width: 1023px) {
+  .solutions__grid {
+    grid-template-columns: repeat(2, 1fr); // 2 колонки на планшетах
+  }
+}
+
+@media (max-width: 767px) {
+  .solutions__grid {
+    grid-template-columns: 1fr; // 1 колонка на мобилках
+    gap: 16px;
+  }
+}

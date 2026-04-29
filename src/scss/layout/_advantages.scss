@@ -1,0 +1,92 @@
+@use '../base/variables' as *;
+
+.advantages {
+  position: relative;
+  margin: 80px 0;
+  background-color: $color-secondary; // 1. Основной фон секции
+  overflow: hidden; // 2. Скрываем "раздутые" от блюра края картинки
+  isolation: isolate; // Создает новый контекст наложения (чтобы z-index работал корректно)
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    
+    background-image: url('../../img/bg-advantages.png');
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    
+    // 3. Твой мощный блюр
+    filter: blur(90px); 
+    // 5. Можно подкрутить прозрачность, если пятно слишком яркое
+    opacity: 0.8; 
+    
+    z-index: -1; // Уходит под контент, но остается над $color-secondary
+  }
+
+  &__row {
+    position: relative;
+    z-index: 1; // Контент всегда сверху
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 58px 0;
+    gap: 40px;
+  }
+
+  &__content {
+    flex: 0 1 45%;
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: $color-text-main;
+  }
+
+  &__desc {
+    font-size: 17px;
+    line-height: 24px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    color: $color-text-main;
+  }
+
+  &__link {
+    font-weight: 600;
+    color: $color-text-main;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    transition: $transition-default;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__list {
+    flex: 0 1 50%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 20px;
+  }
+}
+
+// Адаптивность
+@media (max-width: 1023px) {
+  .advantages {
+    &::before {
+       background-position: center; // Центрируем пятно на мобилках
+    }
+    &__row {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 40px 0;
+    }
+    &__content, &__list {
+      flex: 0 1 100%;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@use "../base/variables" as *;
+
+.services {
+    margin-bottom: 54px;
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  &__content {
+    flex: 0 1 570px;
+    width: 100%;
+    max-width: 570px;
+    .btn {
+      padding: 11px 20px;
+      font-size: 17px;
+    }
+  }
+
+  &__title {
+    font-size: $fs-h2; // Используем твою переменную 42px
+    font-weight: 700;
+    color: $color-text-main;
+  }
+
+  &__description {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4; // Добавь межстрочный интервал как в макете
+    color: $color-text-main;
+    width: 100%;
+    margin: 30px 0;
+  }
+
+  &__grid {
+    flex: 0 1 570px;
+    width: 100%;
+    max-width: 570px;
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); // Пока одна в ряд, как на скрине
+    gap: 20px;
+  }
+}
+
+// Адаптивность под ТЗ (Планшет и Мобилка)
+@media (max-width: 1023px) {
+  .services__row {
+    flex-direction: column; // Стак колонкой на планшетах и ниже
+  }
+  .services__content,
+  .services__grid {
+    flex: 0 1 100%;
+  }
+}

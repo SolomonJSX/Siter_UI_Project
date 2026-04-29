@@ -1,0 +1,396 @@
+@use "../base/variables" as *;
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 20px;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+  }
+
+  &__content {
+    position: relative;
+    background: #f8fafc;
+    width: 100%;
+    max-width: 490px;
+    padding: 50px 60px;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(30px);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 10;
+
+    .modal.is-open & {
+      transform: translateY(0);
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #fff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transform: rotate(90deg);
+      background: $color-primary;
+      svg path {
+        stroke: #fff;
+      }
+    }
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 35px;
+    color: $color-text-main;
+  }
+}
+
+// --- СТИЛИ ФОРМЫ (LABEL ВНУТРИ) ---
+
+.form-group {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+// Обертка, которая имитирует поле ввода
+.input-wrapper,
+.select-wrapper,
+.textarea-wrapper {
+  position: relative;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 10px 16px; // Внутренний отступ для всего блока
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 64px;
+
+  box-shadow: 0px 0px 15px 0px #1F2A331A;
+
+  &:focus-within {
+    border-color: $color-primary;
+    box-shadow: 0px 0px 15px 0px rgba(31, 42, 51, 0.2), 0 0 0 1px $color-primary;
+  }
+
+  // Заголовок внутри блока
+  .form-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: $color-input-label;
+  }
+}
+
+// Само поле (инпут, селект)
+.input-field,
+.textarea-field {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: $color-text-main;
+  outline: none;
+
+  &::placeholder {
+    color: #cbd5e0;
+    font-weight: 400;
+  }
+}
+
+.textarea-field {
+  min-height: 80px;
+  resize: none;
+  margin-top: 5px;
+}
+
+// Иконки и кастомные стрелки
+.input-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  user-select: none;
+  background: #ffffff;
+
+  &__header {
+    position: relative;
+    border-radius: 5px;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    min-height: 64px;
+    justify-content: center;
+    box-shadow: 0px 0px 15px 0px #1F2A331A;
+    padding-right: 45px;
+  }
+
+  &__label {
+    font-size: 12px;
+    color: #a0aec0; // Тот самый бледный цвет со скрина
+    margin-bottom: 2px;
+  }
+
+  &__value {
+    font-size: 15px;
+    font-weight: 400;
+    color: #B0C1D0;
+    line-height: 100%;
+  }
+
+  &__arrow {
+    position: absolute;
+    right: 16px; // Немного подогнал под общий отступ
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+    pointer-events: none; // Клик будет проходить сквозь стрелку на хедер
+    display: flex;
+    align-items: center;
+
+    svg {
+      display: block; // Убирает лишние пиксели снизу у инлайновых элементов
+    }
+  }
+
+  // Состояние при открытии
+  &.is-active {
+    .custom-select__arrow {
+      // Важно оставить translateY, иначе стрелка улетит вверх при повороте
+      transform: translateY(-50%) rotate(180deg);
+    }
+    .custom-select__header {
+      border-color: $color-primary;
+    }
+    .custom-select__arrow {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    .custom-select__dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); // Мягкая тень как на скрине
+    padding: 8px 0;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  &__option {
+    padding: 12px 20px;
+    font-size: 15px;
+    color: #a0aec0; // Цвет текста опций
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #f8fafc;
+      color: $color-primary;
+    }
+  }
+}
+
+// --- РАДИО И ЧЕКБОКСЫ ---
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 12px;
+
+  input {
+    display: none; // Скрываем стандартный инпут
+  }
+
+  .radio-marker {
+    width: 30px; // Размер внешнего круга
+    height: 30px;
+    background: #e9eef2; // Цвет Default состояния
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+    border: none; // Убираем рамку, так как на макете заливка
+
+    // Внутренняя точка (черная по дефолту)
+    &::after {
+      content: "";
+      width: 12px;
+      height: 12px;
+      background: #343037;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+  }
+
+  // Состояние HOVER
+  &:hover .radio-marker {
+    background: #d1d9e0; // Чуть более темный серый при наведении
+  }
+
+  // Состояние ACTIVE (Checked)
+  input:checked + .radio-marker {
+    background: $color-primary; // Твой фиолетовый #B829A0
+
+    &::after {
+      background: #ffffff; // Белый центр
+      width: 12px; // На макете белый круг кажется чуть крупнее черной точки
+      height: 12px;
+    }
+  }
+
+  .radio-label {
+    font-size: 15px;
+    line-height: 24px;
+    color: $color-input-label;
+    font-weight: 400;
+    line-height: 18px; // Чтобы было "- whatsapp" как на скрине
+  }
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  gap: 12px;
+
+  input {
+    display: none; // Скрываем стандартный чекбокс
+  }
+
+  .checkbox-marker {
+    width: 30px;
+    height: 30px;
+    background: #e9eef2; // Цвет Default (как на скрине)
+    border-radius: 8px; // Скругленные углы для формы "мягкий квадрат"
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    position: relative;
+
+    // Галочка (checkmark)
+    &::after {
+      content: "";
+      width: 12px;
+      height: 7px;
+      border-left: 2px solid #343037; // Темная галочка по дефолту
+      border-bottom: 2px solid #343037;
+      transform: rotate(-45deg) translateY(-1px); // Поворачиваем, чтобы получилась галочка
+      transition: all 0.2s ease;
+    }
+  }
+
+  // Состояние HOVER
+  &:hover .checkbox-marker {
+    background: #d1d9e0; // Чуть темнее при наведении
+  }
+
+  // Состояние ACTIVE (Checked)
+  input:checked + .checkbox-marker {
+    background: $color-primary; // Фиолетовый фон
+
+    &::after {
+      border-color: #ffffff; // Белая галочка в активном состоянии
+    }
+  }
+
+  .checkbox-label {
+    font-size: 15px;
+    line-height: 1.4;
+    color: $color-input-label;
+    font-weight: 400;
+    line-height: 18px;
+  }
+}
+
+.btn--full {
+  display: block;     
+  margin-left: auto;    
+  margin-right: auto;   
+  margin-top: 43px;
+  
+  padding: 14px 60px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 12px;
+  width: fit-content;   
+  border: none;         
+  cursor: pointer;
+}
+
+// Адаптив для мобильных
+@media (max-width: 480px) {
+  .modal__content {
+    padding: 40px 25px;
+    border-radius: 20px;
+  }
+  .modal__title {
+    font-size: 24px;
+  }
+  .radio-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

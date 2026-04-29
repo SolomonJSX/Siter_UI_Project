@@ -1,0 +1,38 @@
+@use "../base/variables" as *;
+
+.service-card {
+  background-color: #F4F7FA; // Светло-серый фон как на скрине
+  border-radius: 15px;
+  padding: 30px 40px;
+  transition: transform $transition-default, box-shadow $transition-default;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  }
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 20px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__title {
+    color: $color-primary; // Твой фиолетовый/розовый #B829A0
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  &__text {
+    font-size: 17px;
+    line-height: 24px;
+    color: $color-text-main;
+  }
+}

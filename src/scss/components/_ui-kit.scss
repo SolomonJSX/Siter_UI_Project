@@ -8,12 +8,13 @@
 
 .ui-kit {
   position: relative;
-  height: 490px; // Фиксированная высота по вашему запросу
+  height: 490px;
   background-color: #202020;
   overflow: hidden;
   display: flex;
-  align-items: center; // Центрируем контент по вертикали
+  align-items: center; // Центрирует __inner по вертикали
   font-family: $font-main;
+  isolation: isolate;
 
   &__title {
     color: $color-white;
@@ -38,11 +39,11 @@
 
   // 1. Слой с текстурой шума (Noise)
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: -100%; // Расширяем, чтобы при анимации не было пустых краев
     z-index: 2;
-    background-image: url('../img/noise.png'); // Ваша "Картинка 2"
+    background-image: url("../../img/noise.png"); // Ваша "Картинка 2"
     background-repeat: repeat;
     opacity: 0.3; // Регулируйте прозрачность шума здесь
     mix-blend-mode: overlay; // Шум будет виден только на светлых участках (градиентах)
@@ -89,25 +90,129 @@
     z-index: 10; // Контент всегда выше фона и шума
     width: 100%;
   }
+
+  &__inner {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+  }
+
+  // Создаем двухколоночную сетку
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    gap: 30px;
+  }
+
+  &__content {
+    flex: 0 1 45%; // Текст занимает примерно 45% ширины
+    color: $color-white;
+    // ... стили для заголовка и текста ...
+  }
+
+  // Контейнер для изображений
+  &__images {
+    flex: 0 1 55%; // Картинки занимают примерно 55% ширины
+    position: relative; // Контекст позиционирования для дочерних картинок
+    height: 400px; // Занимает всю высоту родителя (490px)
+    // perspective: 1000px; // Можно добавить для более глубокого 3D эффекта при вращении
+  }
+
+  // Общие стили для всех картинок в композиции
+  &__img {
+    position: absolute;
+    pointer-events: none; 
+    object-fit: contain; 
+
+    // Базовая тень для создания глубины
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    &--bg-shape {
+      width: 239px; // Примерная ширина
+      height: 239px;
+      top: 142px;
+      left: 38px;
+      z-index: 4;
+    }
+
+    // 2. Планшет
+    &--tablet {
+      object-fit: fill;
+      clip-path: inset(0 25% 0 0 round 80px);
+      width: 440px;
+      height: auto;
+      top: 42px;
+      left: 200px;
+      z-index: 1; // Выше подложки
+      border-radius: 80px;
+    }
+
+    // 3. Ноутбук (передний план)
+    &--laptop {
+      width: 308px;
+      height: 207px;
+      top: 202px; // Привязка к низу
+      left: 72px;
+      z-index: 6; // Выше планшета
+    }
+
+    // 4. Плавающие иконки (самый верхний слой)
+
+    &--icon-nodes {
+      width: 120px;
+      height: auto;
+      top: 95px;
+      left: 60px;
+      z-index: 5;
+    }
+
+    &--icon-up {
+      width: 150px;
+      height: auto;
+      left: 440px;
+      z-index: 3;
+    }
+
+    &--icon-rocket {
+      width: 120px;
+      height: auto;
+      top: 305px;
+      left: 380px;
+      z-index: 4;
+    }
+  }
 }
 
 // Анимация для "движения" шума
 @keyframes noise-move {
-  0% { transform: translate(0, 0); }
-  10% { transform: translate(-1%, -2%); }
-  30% { transform: translate(2%, 1%); }
-  50% { transform: translate(-2%, 3%); }
-  70% { transform: translate(3%, -1%); }
-  100% { transform: translate(0, 0); }
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-1%, -2%);
+  }
+  30% {
+    transform: translate(2%, 1%);
+  }
+  50% {
+    transform: translate(-2%, 3%);
+  }
+  70% {
+    transform: translate(3%, -1%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 // Доп. стили для кнопок в этой секции
 .btn--outline {
-    background: transparent;
-    border: 1px solid $color-white;
-    color: $color-white;
-    &:hover {
-        background: $color-white;
-        color: #000;
-    }
+  background: transparent;
+  border: 1px solid $color-white;
+  color: $color-white;
+  &:hover {
+    background: $color-white;
+    color: #000;
+  }
 }

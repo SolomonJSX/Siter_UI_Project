@@ -1,0 +1,121 @@
+@use '../base/variables' as *;
+
+.faq {
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    &__content {
+        flex: 0 1 30%;
+    }
+
+    &__title {
+        font-size: 42px;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+    &__text {
+        font-size: 22px;
+        line-height: 1.5;
+        color: $color-text-main;
+        font-weight: 400;
+    }
+
+    &__accordion {
+        flex: 0 1 65%;
+    }
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    background: $color-secondary;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: background 0.3s ease;
+
+    &__trigger {
+        width: 100%;
+        padding: 24px 30px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        font-size: 17px;
+        font-weight: 700;
+        color: $color-text-main;
+        gap: 20px;
+
+        span {
+            flex: 1;
+        }
+    }
+
+    &__icon {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        transition: transform 0.3s ease;
+
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            background: currentColor;
+            transition: all 0.3s ease;
+        }
+
+        // Рисуем стрелочку или плюс
+        &::before {
+            width: 10px;
+            height: 2px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            margin-left: -3px;
+        }
+        &::after {
+            width: 10px;
+            height: 2px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            margin-left: 3px;
+        }
+    }
+
+    &__content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        
+        &-inner {
+            padding: 0 30px 30px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: $color-text-main;
+            opacity: 0.9;
+
+            p { margin-bottom: 15px; }
+            p:last-child { margin-bottom: 0; }
+        }
+    }
+
+    // Состояние когда открыто
+    &.is-active {
+        background: #E9EDF2; // Чуть темнее при открытии как на скрине
+
+        .accordion-item__icon {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .faq__row { flex-direction: column; }
+    .faq__content, .faq__accordion { flex: 0 1 100%; }
+}

@@ -1,0 +1,58 @@
+@use "../base/variables" as *;
+
+.solution-card {
+  background: #F4F7FA; // Цвет фона из Figma (image_7b9e99)
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  transition: transform $transition-default, box-shadow $transition-default;
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 10px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 700;
+    color: $color-primary; // Твой розовый/фиолетовый
+    margin-bottom: 15px;
+  }
+
+  &__text {
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $color-text-main;
+    margin-top: auto; // Прижимает текст к низу, если заголовки разной высоты
+  }
+
+  // МОДИФИКАТОР ДЛЯ АКЦЕНТНОЙ КАРТОЧКИ
+  &--accent {
+    // Градиент: фиолетовый -> синий
+    background: linear-gradient(108deg, #B829A0 0%, #6366F1 100%);
+    
+    .solution-card__title,
+    .solution-card__text {
+      color: $color-white;
+    }
+
+    .solution-card__icon {
+      // Делаем темную иконку белой с помощью фильтров
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  }
+}

@@ -1,0 +1,76 @@
+.marquee {
+  width: 100%;
+  margin: 80px 0;
+  overflow: hidden; // Прячем то, что выходит за границы экрана
+  display: flex;
+  white-space: nowrap;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 30px; // Отступ между лого и точками
+    animation: scrollMarquee 30s linear infinite;
+    width: max-content;
+    flex-shrink: 0;
+  }
+
+  &__dot {
+    color: #dfe6ec;
+    font-size: 24px;
+    opacity: 0.5;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    img,
+    svg {
+      height: 37px; // Регулируй высоту под макет
+      width: auto;
+    }
+
+    &--circle {
+      img,
+      svg {
+        height: 80px; // Круглый логотип обычно крупнее
+      }
+    }
+  }
+}
+
+// Анимация движения влево
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); // Двигаем ровно на половину общей длины
+  }
+}
+
+// Адаптивность под планшет и мобилку
+@media (max-width: 1023px) {
+  .marquee {
+    padding: 40px 0;
+    &__inner {
+      gap: 40px;
+      padding-right: 40px;
+    }
+    &__logo img {
+      height: 35px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .marquee {
+    &__inner {
+      animation-duration: 25s;
+    } // На мобилках лучше чуть быстрее, так как путь короче
+    &__logo img {
+      height: 28px;
+    }
+  }
+}

@@ -14,7 +14,7 @@
     &-dropdown {
       @include flex-icon(10px, 400);
 
-      &:hover .icon-arrow {
+      &:active .icon-arrow {
         transform: rotate(180deg);
       }
     }
@@ -105,7 +105,7 @@
         transition: transform $transition-default, border-top-color $transition-default;
       }
 
-      &:hover {
+      &:active {
         color: $color-primary;
 
         // Эффект для стрелочки: поворот и легкое смещение вниз
@@ -135,5 +135,57 @@
     /* Цвет текста */
     text-decoration: none;
     /* Убирает подчеркивание, если это ссылка */
+  }
+
+  &__dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    min-width: 200px;
+    background: $color-white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 15px 0;
+    list-style: none;
+    z-index: 100;
+    
+    // Плавное появление
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all $transition-default;
+
+    li {
+      padding: 0 !important; 
+      
+      a {
+        display: block;
+        padding: 8px 20px;
+        color: $color-text-main !important;
+        font-weight: 400 !important;
+        font-family: $font-main !important;
+        font-size: 14px;
+
+        &:hover {
+          background-color: $color-secondary;
+          color: $color-primary !important;
+        }
+      }
+    }
+  }
+
+  .js-dropdown {
+    position: relative; 
+
+    &.is-active {
+      .header__dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .icon-arrow {
+        transform: rotate(180deg);
+      }
+    }
   }
 }

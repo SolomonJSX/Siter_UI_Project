@@ -12,17 +12,13 @@ module.exports = {
     target,
     devtool,
     devServer: {
-        port: 3000,
-        open: true,
-        hot: true,
+        watchFiles: path.join(__dirname, 'src'),
+        port: 9000,
     },
-    // Точка входа — твой главный JS файл
     entry: path.resolve(__dirname, 'src', 'main.js'),
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        clean: true,
-        filename: 'js/[name].[contenthash].js',
-        assetModuleFilename: 'assets/[name][ext]'
+        path: path.join(__dirname, 'dist'),
+        filename: 'index.[contenthash].js',
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -34,12 +30,10 @@ module.exports = {
     ],
     module: {
         rules: [
-            // HTML
             {
                 test: /\.html$/i,
                 loader: 'html-loader',
             },
-            // SCSS / CSS
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
@@ -51,17 +45,26 @@ module.exports = {
                 },
                 type: 'javascript/auto'
             },
-            // Стили
+            // --- СЕКЦИЯ СТИЛЕЙ (ОБНОВЛЕНА) ---
             {
                 test: /\.(c|sa|sc)ss$/i,
                 use: [
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: { sourceMap: true } // sourceMap нужен для resolve-url-loader
+                    },
                     'postcss-loader',
-                    'sass-loader',
+                    'resolve-url-loader', // <--- Добавляем ПЕРЕД sass-loader
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true, // ОБЯЗАТЕЛЬНО true
+                        },
+                    },
                 ],
             },
-            // Шрифты
+            // --------------------------------
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
                 type: 'asset/resource',
@@ -69,16 +72,11 @@ module.exports = {
                     filename: 'fonts/[name][ext]'
                 }
             },
-            // Картинки
             {
                 test: /\.(jpe?g|png|webp|gif|svg)$/i,
-                type: 'asset', // Просто 'asset', без /resource
-                parser: {
-                    dataUrlCondition: {
-                        maxSize: 8 * 1024 // Файлы меньше 8 КБ станут Base64
-                    }
-                },
+                type: 'asset/resource', // Используйте resource для надежности
                 generator: {
+                    // Эта магическая строка сохранит путь относительно папки img
                     filename: 'img/[name][ext]'
                 }
             },

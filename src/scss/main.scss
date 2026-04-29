@@ -5,5 +5,15 @@
 @use 'base/typography';
 @use 'components/button';
 @use 'components/ui-kit';
+@use 'components/marquee';
+@use 'components/service-card';
+@use 'components/solution-card';
+@use 'components/advantage-item';
+@use 'components/modal';
 @use 'layout/header';
 @use "layout/grid";
+@use "layout/services";
+@use "layout/solutions";
+@use "layout/advantages";
+@use "layout/cases";
+@use "layout/faq";

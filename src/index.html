@@ -19,9 +19,14 @@
             <div class="container">
                 <div class="header__top-inner">
                     <nav class="header__top-nav">
-                        <div class="header__top-dropdown">
+                        <div class="header__top-dropdown js-dropdown">
                             <span class="header__top-dropdown-text">О компании</span>
                             <i class="icon-arrow"></i>
+                            <ul class="header__dropdown-menu">
+                                <li><a href="#">История</a></li>
+                                <li><a href="#">Команда</a></li>
+                                <li><a href="#">Вакансии</a></li>
+                            </ul>
                         </div>
                         <a href="#" class="header__portfolio">
                             <img src="./img/icons/portfolio.svg" alt=""> Портфолио
@@ -61,11 +66,35 @@
                     </a>
                     <nav class="header__menu">
                         <ul class="header__menu-list">
-                            <li><a href="#">Сайты</a><i class="icon-arrow"></i></li>
+                            <li class="js-dropdown">
+                                <a href="#">Сайты</a>
+                                <i class="icon-arrow"></i>
+                                <ul class="header__dropdown-menu">
+                                    <li><a href="#">Интернет-магазины</a></li>
+                                    <li><a href="#">Корпоративные сайты</a></li>
+                                    <li><a href="#">Лендинги</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#">Мобильные приложения</a></li>
                             <li><a href="#">Контекстная реклама</a></li>
-                            <li><a href="#">Интеграции</a></li>
-                            <li><a href="#">Дизайн</a></li>
+                            <li class="js-dropdown">
+                                <a href="#">Интеграции</a>
+                                <i class="icon-arrow"></i>
+                                <ul class="header__dropdown-menu">
+                                    <li><a href="#">Интернет-магазины</a></li>
+                                    <li><a href="#">Корпоративные сайты</a></li>
+                                    <li><a href="#">Лендинги</a></li>
+                                </ul>
+                            </li>
+                            <li class="js-dropdown">
+                                <a href="#">Дизайн</a>
+                                <i class="icon-arrow"></i>
+                                <ul class="header__dropdown-menu">
+                                    <li><a href="#">Интернет-магазины</a></li>
+                                    <li><a href="#">Корпоративные сайты</a></li>
+                                    <li><a href="#">Лендинги</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#">Лицензии 1С-Битрикс</a></li>
                         </ul>
                     </nav>
@@ -84,50 +113,469 @@
 
             <div class="ui-kit__inner">
                 <div class="container">
-                    <h1 class="ui-kit__title">UI KIT</h1>
-                    <p class="ui-kit__text">Фирменные UI элементы siter.kz</p>
-                    <div class="ui-kit__btns">
-                        <button class="btn btn--primary">Смотреть UI</button>
-                        <button class="btn btn--outline">Оставить заявку</button>
+                    <div class="ui-kit__row">
+
+                        <div class="ui-kit__content">
+                            <h1 class="ui-kit__title">UI KIT</h1>
+                            <p class="ui-kit__text">Фирменные UI элементы siter.kz</p>
+                            <div class="ui-kit__btns">
+                                <button class="btn btn--primary">Смотреть UI</button>
+                                <button class="btn btn--outline">Оставить заявку</button>
+                            </div>
+                        </div>
+
+                        <div class="ui-kit__images">
+                            <img src="./img/ui-kit/ui-bg-shape.svg" alt="" class="ui-kit__img ui-kit__img--bg-shape">
+
+                            <img src="./img/ui-kit/ui-tablet.png" alt="UI Kit Tablet"
+                                class="ui-kit__img ui-kit__img--tablet">
+
+                            <img src="./img/ui-kit/ui-laptop.png" alt="UI Kit Laptop"
+                                class="ui-kit__img ui-kit__img--laptop">
+
+                            <img src="./img/ui-kit/icon-nodes.svg" alt="" class="ui-kit__img ui-kit__img--icon-nodes">
+                            <img src="./img/ui-kit/icon-up.png" alt="" class="ui-kit__img ui-kit__img--icon-up">
+                            <img src="./img/ui-kit/icon-rocket.png" alt="" class="ui-kit__img ui-kit__img--icon-rocket">
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="logos">
-            <div class="logos__marquee">
-                <div class="logos__track">
+        <section class="marquee">
+            <div class="marquee__inner" id="marquee-inner">
+                <span class="marquee__dot">•</span>
+                <div class="marquee__logo marquee__logo--circle">
+                    <img src="img/logos/hoster-circle.svg" alt="Hoster">
+                </div>
+                <span class="marquee__dot">•</span>
+                <div class="marquee__logo">
+                    <img src="img/logos/1c-bitrix.svg" alt="1С-Битрикс">
+                </div>
+                <span class="marquee__dot">•</span>
+                <div class="marquee__logo">
+                    <img src="img/logos/bitrix24.svg" alt="Битрикс24">
+                </div>
+
+                <span class="marquee__dot">•</span>
+                <div class="marquee__logo marquee__logo--circle">
+                    <img src="img/logos/hoster-circle.svg" alt="Hoster">
+                </div>
+                <span class="marquee__dot">•</span>
+                <div class="marquee__logo">
+                    <img src="img/logos/1c.svg" alt="1С">
+                </div>
+                <span class="marquee__dot">•</span>
+                <div class="marquee__logo">
+                    <img src="img/logos/ip-telephony.svg" alt="IP Телефония">
+                </div>
+                <span class="marquee__dot">•</span>
+                <div class="marquee__logo">
+                    <img src="img/logos/api.svg" alt="API">
                 </div>
             </div>
         </section>
 
-        <section class="slider-section">
+        <section class="services section-padding">
             <div class="container">
-                <div class="slider" id="main-slider">
-                    <div class="slider__track-container">
-                        <ul class="slider__track">
-                            <li class="slider__slide">Slide 1 Content</li>
-                            <li class="slider__slide">Slide 2 Content</li>
-                            <li class="slider__slide">Slide 3 Content</li>
-                        </ul>
+                <div class="services__row">
+                    <div class="services__content">
+                        <h2 class="services__title">Услуги</h2>
+                        <p class="services__description">
+                            Оставьте заявку на создание сайта или консультацию по разработке проекта и наш менеджер
+                            перезвонит вам
+                        </p>
+                        <button class="btn btn--primary">Оставить заявку</button>
                     </div>
-                    <button class="slider__btn slider__btn--prev">Назад</button>
-                    <button class="slider__btn slider__btn--next">Вперед</button>
+
+                    <div class="services__grid">
+                        <div class="service-card">
+                            <div class="service-card__icon">
+                                <img src="./img/icons/service-site.svg" alt="Создание сайтов">
+                            </div>
+                            <h3 class="service-card__title">Создание сайтов</h3>
+                            <p class="service-card__text">
+                                Предлагаем для разработки на выбор 70+ шаблонов на готовом решении и индивидуальную
+                                разработку под запросы и особенности бизнеса.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="faq">
+        <section class="solutions section-padding">
             <div class="container">
-                <h2 class="title-h2">Часто задаваемые вопросы</h2>
-                <div class="accordion">
-                    <div class="accordion__item">
-                        <button class="accordion__trigger">
-                            <span>Что такое Siter?</span>
-                            <span class="accordion__icon">+</span>
-                        </button>
-                        <div class="accordion__content">
-                            <p>Это мощный инструмент для создания сайтов.</p>
+                <div class="solutions__grid">
+                    <div class="solution-card">
+                        <div class="solution-card__icon">
+                            <img src="./img/icons/ads.svg" alt="Контекстная реклама">
+                        </div>
+                        <h3 class="solution-card__title">Контекстная реклама</h3>
+                        <p class="solution-card__text">
+                            Создаем и запускаем рекламные кампании в Яндекс и Google, повышая продажи на сайте.
+                        </p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-card__icon">
+                            <img src="./img/icons/integration.svg" alt="Интеграция">
+                        </div>
+                        <h3 class="solution-card__title">Интеграция</h3>
+                        <p class="solution-card__text">
+                            Интегрируем сайты и интернет-магазины с учетными системами и внешними сервисами по API.
+                        </p>
+                    </div>
+
+                    <div class="solution-card solution-card--accent">
+                        <div class="solution-card__icon">
+                            <img src="./img/icons/support-white.svg" alt="Поддержка сайтов">
+                        </div>
+                        <h3 class="solution-card__title">Поддержка сайтов</h3>
+                        <p class="solution-card__text">
+                            Совершенствуем и развиваем интернет-проекты на 1С-Битрикс, делая их успешнее.
+                        </p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-card__icon">
+                            <img src="./img/icons/mobile.svg" alt="Мобильные приложения">
+                        </div>
+                        <h3 class="solution-card__title">Мобильные приложения</h3>
+                        <p class="solution-card__text">
+                            Расширяем возможности онлайн торговли, разрабатывая приложения для iOS и Android.
+                        </p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-card__icon">
+                            <img src="./img/icons/design.svg" alt="Дизайн">
+                        </div>
+                        <h3 class="solution-card__title">Дизайн</h3>
+                        <p class="solution-card__text">
+                            Создаем уникальные презентации и запоминаемый образ компании, чтобы выделиться среди
+                            конкурентов.
+                        </p>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-card__icon">
+                            <img src="./img/icons/1c-lic.svg" alt="Лицензии 1С">
+                        </div>
+                        <h3 class="solution-card__title">Лицензии 1С</h3>
+                        <p class="solution-card__text">
+                            Предлагаем официальные лицензии для разработки и управления веб-сайтами от партнера
+                            1С-Битрикс.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="advantages section-padding">
+            <div class="container">
+                <div class="advantages__row">
+                    <div class="advantages__content">
+                        <h2 class="advantages__title">Почему нас выбирают</h2>
+                        <div class="advantages__desc">
+                            <p>Мы всегда честно и открыто рассказываем о процессе разработки веб-сайтов, делимся опытом
+                                и стремимся к тому, чтобы наши услуги приносили вам реальную пользу в бизнесе.
+                                Разрабатываем сайты для компаний Астаны, Алматы, Караганды и других городов Казахстана
+                            </p>
+                        </div>
+                        <a href="#" class="advantages__link">Читайте подробнее о нас</a>
+                    </div>
+
+                    <div class="advantages__list">
+                        <div class="advantage-item">
+                            <div class="advantage-item__icon"><img src="./img/icons/adv-time.svg" alt=""></div>
+                            <div class="advantage-item__text">Экономим время клиентов</div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="advantage-item__icon"><img src="./img/icons/adv-pro.svg" alt=""></div>
+                            <div class="advantage-item__text">Наш профессионализм подтвержден</div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="advantage-item__icon"><img src="./img/icons/adv-leader.svg" alt=""></div>
+                            <div class="advantage-item__text">Лидеры во всех рейтингах 1С-Битрикс</div>
+                        </div>
+                        <div class="advantage-item">
+                            <div class="advantage-item__icon"><img src="./img/icons/adv-team.svg" alt=""></div>
+                            <div class="advantage-item__text">Команда опытных разработчиков и менеджеров</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cases section-padding">
+            <div class="container">
+                <div class="cases__header">
+                    <h2 class="cases__title">Эти компании сделали выбор в нашу пользу</h2>
+                    <p class="cases__subtitle">и получили свой <span>результат!</span></p>
+                </div>
+
+                <div class="cases__slider-container">
+                    <button class="cases__nav cases__nav--prev" id="casePrev">
+                        <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+                            <path d="M7 1L2 6L7 11" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </button>
+                    <button class="cases__nav cases__nav--next" id="caseNext">
+                        <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+                            <path d="M1 1L6 6L1 11" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </button>
+
+                    <div class="cases__slider">
+                        <div class="cases__wrapper" id="caseWrapper">
+
+                            <div class="cases__slide">
+                                <div class="cases__slide-inner">
+                                    <div class="cases__content">
+                                        <h3 class="cases__project-title">Разработка интернет магазина для дистрибьютора
+                                            шин</h3>
+                                        <ul class="cases__list">
+                                            <li>Разработали уникальный дизайн карточек товаров и каталога.</li>
+                                            <li>Настроили для сайта интеграцию с 1С и CRM системой синхронизации товаров
+                                                и заказов.</li>
+                                            <li>Создали специальные разделы: «Подробнее об акциях», «Запись на
+                                                шиномонтаж», «Доставка».</li>
+                                            <li>Подключили функционал оплаты онлайн, в рассрочку или кредит.</li>
+                                            <li>Создали закрытый раздел с заказами для менеджеров, в котором хранятся
+                                                все данные по услугам.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cases__image">
+                                        <img src="./img/cases/tire-pro.png" alt="Tire Pro">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cases__slide">
+                                <div class="cases__slide-inner">
+                                    <div class="cases__content">
+                                        <h3 class="cases__project-title">Ведение контекстной рекламы для
+                                            интернет-магазина сантехники
+                                        </h3>
+                                        <ul class="cases__list">
+                                            <li>Привлекли более 34 000 заявок с сайта через Google Ads и Яндекс.Директ
+                                            </li>
+                                            <li>На 50% снизили цену клика (CPC), с 0,08$ до 0,04$
+                                            </li>
+                                            <li>Снизили стоимость обращения с 3,14$ до 0,58$</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cases__image">
+                                        <img src="./img/cases/whale-sea-plumbing.png" alt="Tire Pro">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cases__slide">
+                                <div class="cases__slide-inner">
+                                    <div class="cases__content">
+                                        <h3 class="cases__project-title">Разработка индивидуального корпоративного сайта
+                                            для сети детских парков
+                                        </h3>
+                                        <ul class="cases__list">
+                                            <li>Оформили интерфейс в фирменном стиле компании</li>
+                                            <li>Разработали личный кабинет для пользователей и регистрацию через SMS для
+                                                удобного доступа</li>
+                                            <li>Создали интерфейс для просмотра и скачивания купленных билетов с
+                                                QR-кодом из 1С и накопленных бонусов</li>
+                                            <li>Провели интеграцию с 1С для синхронизации: актуальных цен, свободных
+                                                билетов и залов</li>
+                                            <li>Внедрили онлайн-оплату билетов и бронирование мероприятий</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cases__image">
+                                        <img src="./img/cases/avatariya.png" alt="Tire Pro">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cases__slide">
+                                <div class="cases__slide-inner">
+                                    <div class="cases__content">
+                                        <h3 class="cases__project-title">Разработка логотипа и фирменного стиля для
+                                            научной компании</h3>
+                                        <ul class="cases__list">
+                                            <li>Разработали 3 прототипа и финальный логотип</li>
+                                            <li>Подобрали цветовую гамму в космическом стиле (синий и розовый)</li>
+                                            <li>Выбрали шрифт для адаптации логотипа и фирменного стиля на кириллице и
+                                                латинице</li>
+                                            <li>Создали стилеобразующие элементы и дизайн носителей фирменного стиля
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="cases__image">
+                                        <img src="./img/cases/geo-int.png" alt="Tire Pro">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cases__slide">
+                                <div class="cases__slide-inner">
+                                    <div class="cases__content">
+                                        <h3 class="cases__project-title">Разработка корпоративного сайта для компании
+                                            промышленного строительства</h3>
+                                        <ul class="cases__list">
+                                            <li>Оформили сайт в фирменном стиле компании</li>
+                                            <li>Разместили информацию о компании, проектах и руководстве</li>
+                                            <li>Реализовали подачу заявок для поставщиков для участия в Закупках</li>
+                                            <li>Добавили раздел для привлечения студентов профильных вузов на практику и
+                                                трудоустройство в компанию</li>
+                                            <li>Разработали три языковые версии: казахскую, русскую и английскую</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cases__image">
+                                        <img src="./img/cases/kss.png" alt="Tire Pro">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cases__pagination" id="casePagination"></div>
+            </div>
+        </section>
+
+        <section class="faq section-padding">
+            <div class="container">
+                <div class="faq__row">
+                    <div class="faq__content">
+                        <h2 class="faq__title">FAQ</h2>
+                        <p class="faq__text">Мы собрали список самых часто-задаваемых вопросов по разработке сайтов и
+                            подробно ответили на них</p>
+                    </div>
+
+                    <div class="faq__accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-item__trigger">
+                                <span>Почему Siter.KZ выбирают для разработки интернет-магазинов на 1С-Битрикс?</span>
+                                <i class="accordion-item__icon"></i>
+                            </button>
+                            <div class="accordion-item__content">
+                                <div class="accordion-item__content-inner">
+                                    <p>Создать сайт в нашей компании можно находясь в любом городе Казахстана. Наши
+                                        клиенты успешно сотрудничают с нами из Караганды, Астаны, Алматы.</p>
+                                    <p>3036 км - расстояние до города, где находится самый удаленный от нас клиент и мы
+                                        с уверенностью можем сказать, что расстояние - не проблема. Оказание
+                                        онлайн-услуг не требует личного присутствия команды разработчиков в офисе
+                                        заказчика.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-item__trigger">
+                                <span>Есть ли у Siter.KZ опыт интеграции сайта с 1С и CRM?</span>
+                                <i class="accordion-item__icon"></i>
+                            </button>
+                            <div class="accordion-item__content">
+                                <div class="accordion-item__content-inner">
+                                    <p>Да, мы специализируемся на сложных интеграциях с различными учетными системами...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-item__trigger">
+                                <span>В каких годах Siter.KZ была №1 по продажам 1С-Битрикс?</span>
+                                <i class="accordion-item__icon"></i>
+                            </button>
+                            <div class="accordion-item__content">
+                                <div class="accordion-item__content-inner">
+                                    <p>Да, мы специализируемся на сложных интеграциях с различными учетными системами...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-item__trigger">
+                                <span>В каких городах Казахстана у вас можно заказать разработку сайта? Работаете с
+                                    клиентами из Астаны, Алматы и Караганды или со всем Казахстаном?</span>
+                                <i class="accordion-item__icon"></i>
+                            </button>
+                            <div class="accordion-item__content">
+                                <div class="accordion-item__content-inner">
+                                    <p>Да, мы специализируемся на сложных интеграциях с различными учетными системами...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-item__trigger">
+                                <span>В каких городах Казахстана у вас можно заказать разработку сайта? Работаете с
+                                    клиентами из Астаны, Алматы и Караганды или со всем Казахстаном?</span>
+                                <i class="accordion-item__icon"></i>
+                            </button>
+                            <div class="accordion-item__content">
+                                <div class="accordion-item__content-inner">
+                                    <p>
+                                        Создать сайт в нашей компании можно находясь в любом городе Казахстана. Наши
+                                        клиенты успешно сотрудничают с нами из Караганды, Астаны, Алматы.
+                                        3036 км - расстояние до города, где находится самый удаленный от нас клиент и мы
+                                        с уверенностью можем сказать, что расстояние - не проблема. Оказание
+                                        онлайн-услуг не требует личного присутствия команды разработчиков в офисе
+                                        заказчика.
+                                        Мы работаем удаленно и все вопросы решаем посредством связи по почте, телефону,
+                                        WhatsApp, Skype. Эффективность удаленного взаимодействия и личных встреч
+                                        примерно одинаковая, но времени можно сэкономить гораздо больше.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-item__trigger">
+                                <span>Я не из Казахстана, как я могу создать сайт у вас?</span>
+                                <i class="accordion-item__icon"></i>
+                            </button>
+                            <div class="accordion-item__content">
+                                <div class="accordion-item__content-inner">
+                                    <p>
+                                        Создать сайт в нашей компании можно находясь в любом городе Казахстана. Наши
+                                        клиенты успешно сотрудничают с нами из Караганды, Астаны, Алматы.
+                                        3036 км - расстояние до города, где находится самый удаленный от нас клиент и мы
+                                        с уверенностью можем сказать, что расстояние - не проблема. Оказание
+                                        онлайн-услуг не требует личного присутствия команды разработчиков в офисе
+                                        заказчика.
+                                        Мы работаем удаленно и все вопросы решаем посредством связи по почте, телефону,
+                                        WhatsApp, Skype. Эффективность удаленного взаимодействия и личных встреч
+                                        примерно одинаковая, но времени можно сэкономить гораздо больше.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-item__trigger">
+                                <span>От чего зависит цена на контекстную рекламу сайта?</span>
+                                <i class="accordion-item__icon"></i>
+                            </button>
+                            <div class="accordion-item__content">
+                                <div class="accordion-item__content-inner">
+                                    <p>
+                                        Создать сайт в нашей компании можно находясь в любом городе Казахстана. Наши
+                                        клиенты успешно сотрудничают с нами из Караганды, Астаны, Алматы.
+                                        3036 км - расстояние до города, где находится самый удаленный от нас клиент и мы
+                                        с уверенностью можем сказать, что расстояние - не проблема. Оказание
+                                        онлайн-услуг не требует личного присутствия команды разработчиков в офисе
+                                        заказчика.
+                                        Мы работаем удаленно и все вопросы решаем посредством связи по почте, телефону,
+                                        WhatsApp, Skype. Эффективность удаленного взаимодействия и личных встреч
+                                        примерно одинаковая, но времени можно сэкономить гораздо больше.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,6 +596,81 @@
                 <button class="modal__close">&times;</button>
                 <h3>Оставьте заявку</h3>
             </div>
+        </div>
+    </div>
+
+    <div class="modal" id="orderModal">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="#343037" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </button>
+
+            <h2 class="modal__title">Оставьте заявку</h2>
+
+            <form class="modal__form">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <label class="form-label">Имя *</label>
+                        <input type="text" class="input-field" placeholder="Сергей" required>
+                        <img src="./img/icons/user-icon.svg" class="input-icon" alt="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="custom-select js-custom-select">
+                        <div class="custom-select__header">
+                            <span class="custom-select__value">Удобный способ связи</span>
+
+                            <div class="custom-select__arrow">
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="#A0AEC0" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="custom-select__dropdown">
+                            <div class="custom-select__option" data-value="phone">Звонок</div>
+                            <div class="custom-select__option" data-value="email">E-mail</div>
+                            <div class="custom-select__option" data-value="whatsapp">WhatsApp</div>
+                        </div>
+
+                        <input type="hidden" name="contact_method" value="phone">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="textarea-wrapper">
+                        <textarea class="textarea-field" placeholder="Сообщение"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" required>
+                        <span class="checkbox-marker"></span>
+                        <span class="checkbox-label">соглашаюсь с политикой конфиденциальности</span>
+                    </label>
+                </div>
+
+                <div class="radio-group">
+                    <label class="custom-radio">
+                        <input type="radio" name="messenger" value="whatsapp">
+                        <span class="radio-marker"></span>
+                        <span class="radio-label">– whatsapp</span>
+                    </label>
+                    <label class="custom-radio">
+                        <input type="radio" name="messenger" value="telegram" checked>
+                        <span class="radio-marker"></span>
+                        <span class="radio-label">– telegram</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--full">Отправить</button>
+            </form>
         </div>
     </div>
 
