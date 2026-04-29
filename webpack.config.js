@@ -72,14 +72,14 @@ module.exports = {
             // Картинки
             {
                 test: /\.(jpe?g|png|webp|gif|svg)$/i,
-                type: 'asset/resource',
-                generator: {
-                    // [path] сохранит структуру относительно папки src
-                    filename: 'img/[path][name][ext]',
-                    // Чтобы в пути не дублировалось 'src/img/', добавим:
+                type: 'asset', // Просто 'asset', без /resource
+                parser: {
                     dataUrlCondition: {
-                        maxSize: 8 * 1024 // необязательно, но полезно для мелких иконок
+                        maxSize: 8 * 1024 // Файлы меньше 8 КБ станут Base64
                     }
+                },
+                generator: {
+                    filename: 'img/[name][ext]'
                 }
             },
         ],
