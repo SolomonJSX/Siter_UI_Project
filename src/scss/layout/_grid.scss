@@ -1,0 +1,26 @@
+@use '../base/variables' as *;
+
+// src/scss/layout/_grid.scss
+
+.container {
+  // Используем переменную максимальной ширины (1170px)
+  max-width: $container-width;
+  
+  // Центрируем блок по горизонтали
+  margin: 0 auto;
+  
+  // Добавляем внутренние отступы (15px), чтобы на мобильных устройствах 
+  // контент не касался краев экрана
+  padding: 0 $container-padding;
+  
+  // Чтобы контейнер корректно работал на экранах меньше 1170px
+  width: 100%;
+}
+
+// Дополнительно можно создать вспомогательный класс для "рядов" (Flexbox)
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$container-padding;
+  margin-right: -$container-padding;
+}

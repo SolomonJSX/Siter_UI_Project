@@ -1,0 +1,27 @@
+@use 'variables' as *;
+
+@mixin flex-icon($gap: 8px, $font-weight: 600, $color: $color-text-main) {
+    display: flex;
+    align-items: center;
+    gap: $gap;
+
+    font-weight: $font-weight;
+    color: $color;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color $transition-default;
+
+    .icon-arrow {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        vertical-align: middle;
+
+        // Рисуем треугольник границами
+        border-left: 4.4px solid transparent;
+        border-right: 4.4px solid transparent;
+        border-top: 4.4px solid $color-text-main; // Цвет стрелки
+
+        transition: transform $transition-default;
+    }
+}

@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+body {
+  font-family: $font-main;
+  font-size: $fs-body;
+  line-height: $lh-main;
+  color: $color-text-main;
+  background-color: $color-white; // Или $color-secondary, если фон серый
+  -webkit-font-smoothing: antialiased; // Делает шрифты более четкими в Safari/Chrome
+}
+
+// Заголовки (используй как теги, так и классы для BEM)
+h1, .title-h1 {
+  font-size: $fs-h1;
+  font-weight: 700;
+  line-height: 1.1;
+  color: $color-text-main;
+}
+
+h2, .title-h2 {
+  font-size: $fs-h2;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $color-text-main;
+}
+
+// Помни про адаптив! В этом же файле можно чуть уменьшить шрифты для мобилок
+@media (max-width: 767px) {
+  h1, .title-h1 {
+    font-size: 32px; // Уменьшаем для телефонов
+  }
+  
+  h2, .title-h2 {
+    font-size: 28px;
+  }
+}

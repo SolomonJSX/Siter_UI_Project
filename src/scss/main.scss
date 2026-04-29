@@ -1,0 +1,9 @@
+// src/scss/main.scss
+@use 'base/variables';
+@use 'base/mixins';
+@use 'base/reset';
+@use 'base/typography';
+@use 'components/button';
+@use 'components/ui-kit';
+@use 'layout/header';
+@use "layout/grid";

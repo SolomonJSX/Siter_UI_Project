@@ -1,0 +1,113 @@
+@use "../base/variables" as *;
+
+// Контейнер (Центровщик)
+.container {
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+.ui-kit {
+  position: relative;
+  height: 490px; // Фиксированная высота по вашему запросу
+  background-color: #202020;
+  overflow: hidden;
+  display: flex;
+  align-items: center; // Центрируем контент по вертикали
+  font-family: $font-main;
+
+  &__title {
+    color: $color-white;
+    font-weight: 700;
+    font-size: $fs-h1;
+    line-height: 52px;
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    color: $color-white;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 30px;
+  }
+
+  &__btns {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+  }
+
+  // 1. Слой с текстурой шума (Noise)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -100%; // Расширяем, чтобы при анимации не было пустых краев
+    z-index: 2;
+    background-image: url('../img/noise.png'); // Ваша "Картинка 2"
+    background-repeat: repeat;
+    opacity: 0.3; // Регулируйте прозрачность шума здесь
+    mix-blend-mode: overlay; // Шум будет виден только на светлых участках (градиентах)
+    pointer-events: none;
+    animation: noise-move 0.2s infinite; // Эффект мерцания/движения
+  }
+
+  // 2. Цветные пятна (Градиенты)
+  &__glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    &-purple {
+      position: absolute;
+      width: 500px;
+      height: 957px;
+      top: -149px;
+      left: 60%; // Подкорректировал, чтобы было видно на средних экранах
+      background: $color-accent-purple;
+      filter: blur(110px); // Немного уменьшил блюр для четкости на 490px высоте
+      opacity: 0.8;
+      border-radius: 50%;
+      z-index: 2;
+      transform: rotate(30deg);
+    }
+
+    &-pink {
+      position: absolute;
+      width: 789px;
+      height: 809px;
+      top: 260px; // Сместил чуть ниже для высоты 490px
+      left: 42%;
+      background: $color-accent-pink;
+      filter: blur(130px);
+      opacity: 0.7;
+      border-radius: 50%;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 10; // Контент всегда выше фона и шума
+    width: 100%;
+  }
+}
+
+// Анимация для "движения" шума
+@keyframes noise-move {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-1%, -2%); }
+  30% { transform: translate(2%, 1%); }
+  50% { transform: translate(-2%, 3%); }
+  70% { transform: translate(3%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+// Доп. стили для кнопок в этой секции
+.btn--outline {
+    background: transparent;
+    border: 1px solid $color-white;
+    color: $color-white;
+    &:hover {
+        background: $color-white;
+        color: #000;
+    }
+}

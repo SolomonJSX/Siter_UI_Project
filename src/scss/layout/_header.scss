@@ -1,0 +1,139 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.header {
+  width: 100%;
+  font-family: $font-main;
+
+  &__top {
+    border-bottom: 1px solid $color-border;
+    padding: 12.5px 0;
+    font-size: 14px;
+    color: $color-text-main;
+
+    &-dropdown {
+      @include flex-icon(10px, 400);
+
+      &:hover .icon-arrow {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__top-nav {
+    display: flex;
+    gap: 30px;
+  }
+
+  &__top-utils {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  &__portfolio {
+    @include flex-icon(7px, 400, $color-primary);
+  }
+
+  &__phone {
+    @include flex-icon(6px);
+  }
+
+  &__lang {
+    @include flex-icon(10px);
+  }
+
+  .icon-arrow-down {
+    display: inline-block;
+    width: 10px; // Ширина галочки
+    height: 6px; // Высота галочки
+    flex-shrink: 0; // Предотвратить сжатие иконки
+
+    path {
+      // stroke="currentColor" в SVG берет цвет от CSS-цвета родителя
+      stroke-width: 1.5; // Толщина линии галочки
+    }
+  }
+
+  &__main {
+    padding: 33px 0;
+
+    &-inner {
+      display: flex;
+      align-items: center;
+      // Изменяем с space-between на flex-start, чтобы элементы встали рядом
+      justify-content: flex-start;
+      // Задаем точный отступ из Figma
+      gap: 46.89px;
+    }
+
+    &__logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__menu-list {
+    display: flex;
+    list-style: none;
+    gap: 31.2px;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+
+    li {
+      // Используем миксин: отступ 8px, шрифт 700, иконка 10px
+      @include flex-icon(5px, 700, 10px);
+      font-family: $font-accent;
+      transition: color $transition-default;
+
+      a {
+        text-decoration: none;
+        color: inherit; // КРИТИЧНО: ссылка будет менять цвет вместе с li
+        white-space: nowrap;
+      }
+
+      .icon-arrow {
+        // Настраиваем плавность для стрелки
+        transition: transform $transition-default, border-top-color $transition-default;
+      }
+
+      &:hover {
+        color: $color-primary;
+
+        // Эффект для стрелочки: поворот и легкое смещение вниз
+        .icon-arrow {
+          transform: rotate(180deg) translateY(-1px);
+          border-top-color: $color-primary;
+        }
+      }
+    }
+  }
+
+  .text-with-arrow {
+    display: flex;
+    /* Делает элементы флекс-контейнерами */
+    align-items: center;
+    /* Выравнивает текст и иконку по центру по вертикали */
+    gap: 5px;
+    /* Задает отступ между текстом и иконкой (можно изменить) */
+    cursor: pointer;
+    /* Показывает, что элемент кликабелен */
+
+    /* Стили для текста */
+    font-family: Arial, sans-serif;
+    /* Пример шрифта */
+    font-size: 9px;
+    color: $color-text-main;
+    /* Цвет текста */
+    text-decoration: none;
+    /* Убирает подчеркивание, если это ссылка */
+  }
+}

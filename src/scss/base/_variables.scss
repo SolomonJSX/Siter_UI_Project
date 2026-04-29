@@ -1,0 +1,26 @@
+// 1. Цвета (Colors)
+$color-primary: #B829A0; // Основной синий из Figma
+$color-secondary: #F4F7FA; // Темный фон
+$color-text-main: #343037; // Серый текст
+$color-white: #FFFFFF;
+$color-border: #D6D7E033;
+$color-text-light: #828282; // Для мелкого текста в top-bar
+$color-bg-dark: #000000;
+$color-accent-purple: #A855F7; // Основное фиолетовое свечение
+$color-accent-pink: #DC107E;   // Розовое свечение
+
+// 2. Типографика (Typography)
+$font-main: 'Inter', sans-serif; // Проверь название в Figma
+$font-accent: 'Open Sans', sans-serif;
+
+$fs-h1: 52px;      // Заголовок Hero
+$fs-h2: 42px;      // Заголовки секций
+$fs-body: 17px;    // Основной текст
+$lh-main: 1.5;     // line-height (обычно 150%)
+
+// 3. Сетка и Отступы (Grid & Spacing)
+$container-width: 1170px; // Ширина контентной части
+$container-padding: 15px; // Поля по бокам на мобилках
+
+// 4. Анимации (Transitions)
+$transition-default: 0.3s ease-in-out;
