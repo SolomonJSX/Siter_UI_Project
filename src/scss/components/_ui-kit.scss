@@ -37,6 +37,20 @@
     gap: 20px;
   }
 
+  .btn {
+    padding: 14px 20px;
+  }
+
+  .btn--outline {
+    background: transparent;
+    border: 1px solid $color-white;
+    color: $color-white;
+    &:hover {
+      background: $color-white;
+      color: #000;
+    }
+  }
+
   // 1. Слой с текстурой шума (Noise)
   &::before {
     content: "";
@@ -123,8 +137,8 @@
   // Общие стили для всех картинок в композиции
   &__img {
     position: absolute;
-    pointer-events: none; 
-    object-fit: contain; 
+    pointer-events: none;
+    object-fit: contain;
 
     // Базовая тень для создания глубины
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
@@ -206,13 +220,75 @@
   }
 }
 
-// Доп. стили для кнопок в этой секции
-.btn--outline {
-  background: transparent;
-  border: 1px solid $color-white;
-  color: $color-white;
-  &:hover {
-    background: $color-white;
-    color: #000;
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ui-kit {
+    height: 450px; // Немного уменьшаем высоту
+
+    &__images {
+      display: none; // ТРЕБОВАНИЕ: картинки исчезают
+    }
+
+    &__content {
+      flex: 0 1 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__btns {
+      width: 100%;
+    }
+
+    // Корректируем градиентные пятна, чтобы они были по центру
+    &__glow-purple {
+      left: 50%;
+      transform: translateX(-50%) rotate(30deg);
+    }
+    &__glow-pink {
+      left: 30%;
+    }
+  }
+}
+
+// Мобильная версия (320px - 767px)
+@media (max-width: 767px) {
+  .ui-kit {
+    height: auto; // Высота зависит от контента
+    padding: 60px 0; // Добавляем отступы сверху и снизу
+
+    &__images {
+      display: none; // На мобилках такие сложные композиции обычно тоже скрывают
+    }
+
+    &__content {
+      flex: 0 1 100%;
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 32px; // Уменьшаем заголовок для мобилки
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    &__text {
+      font-size: 18px; // Уменьшаем подзаголовок
+      line-height: 1.4;
+    }
+
+    &__btns {
+      flex-direction: column; // Кнопки одна под другой
+      gap: 15px;
+      margin-top: 30px;
+
+      .btn {
+        width: 100%; // Кнопки на всю ширину экрана
+        padding: 18px; // Увеличиваем область нажатия (tap target)
+      }
+    }
+
+    // Скрываем или сильно уменьшаем свечение, чтобы не нагружать мобильный браузер
+    &__glow {
+      opacity: 0.5;
+    }
   }
 }

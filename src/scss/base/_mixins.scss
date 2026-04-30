@@ -4,7 +4,6 @@
     display: flex;
     align-items: center;
     gap: $gap;
-
     font-weight: $font-weight;
     color: $color;
     text-decoration: none;
@@ -16,20 +15,12 @@
         width: 0;
         height: 0;
         vertical-align: middle;
-
-        // Рисуем треугольник границами
+        
+        // Базовый треугольник (вниз) для десктопа
         border-left: 4.4px solid transparent;
         border-right: 4.4px solid transparent;
-        border-top: 4.4px solid $color-text-main; // Цвет стрелки
+        border-top: 4.4px solid currentColor; // Используем currentColor, чтобы цвет менялся вместе с текстом
 
-        transition: transform $transition-default;
+        transition: all $transition-default;
     }
-}
-
-@mixin tablet {
-  @media (max-width: 1023px) { @content; }
-}
-
-@mixin mobile {
-  @media (max-width: 767px) { @content; }
 }

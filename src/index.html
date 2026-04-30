@@ -15,6 +15,27 @@
 <body>
 
     <header class="header">
+        <!-- Мобильная полоса (видна < 1024px) -->
+        <div class="header__mobile-bar">
+            <div class="container header__mobile-inner">
+                <a href="/" class="header__logo">
+                    <img src="./img/logo.svg" alt="Hoster.kz">
+                </a>
+                <div class="header__mobile-utils">
+                    <a href="tel:+77470941000" class="header__mobile-icon"><img src="./img/icons/phone.svg"
+                            alt="Call"></a>
+                    <a href="https://wa.me/77470941000" class="header__mobile-icon"><img src="./img/icons/whatsapp.svg"
+                            alt="WA"></a>
+                    <button class="header__mobile-icon header__search-btn"><img src="./img/icons/search.svg"
+                            alt="Search"></button>
+                    <button class="header__burger" id="burger-btn">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Верхняя панель (десктоп) -->
         <div class="header__top">
             <div class="container">
                 <div class="header__top-inner">
@@ -25,7 +46,6 @@
                             <ul class="header__dropdown-menu">
                                 <li><a href="#">История</a></li>
                                 <li><a href="#">Команда</a></li>
-                                <li><a href="#">Вакансии</a></li>
                             </ul>
                         </div>
                         <a href="#" class="header__portfolio">
@@ -37,16 +57,14 @@
                         <button class="header__search-btn"><img src="./img/icons/search.svg" alt=""></button>
                         <a href="tel:+77470941000" class="header__phone">
                             <span class="header__phone-text">+7 (747) 094 10 00</span>
-                            <svg class="icon-arrow-down" width="10" height="6" viewBox="0 0 10 6" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg class="icon-arrow-down" width="10" height="6" viewBox="0 0 10 6" fill="none">
                                 <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                     stroke-linejoin="round" />
                             </svg>
                         </a>
                         <div class="header__lang">
                             <span class="header__lang-text">Рус</span>
-                            <svg class="icon-arrow-down" width="10" height="6" viewBox="0 0 10 6" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg class="icon-arrow-down" width="10" height="6" viewBox="0 0 10 6" fill="none">
                                 <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                     stroke-linejoin="round" />
                             </svg>
@@ -57,47 +75,83 @@
             </div>
         </div>
 
+        <!-- Главная навигация -->
         <div class="header__main">
             <div class="container">
                 <div class="header__main-inner">
-                    <a href="/" class="header__logo">
+                    <a href="/" class="header__logo desktop-only">
                         <img src="./img/logo.svg" alt="Hoster.kz">
-                        <span></span>
                     </a>
-                    <nav class="header__menu">
-                        <ul class="header__menu-list">
-                            <li class="js-dropdown">
-                                <a href="#">Сайты</a>
-                                <i class="icon-arrow"></i>
-                                <ul class="header__dropdown-menu">
-                                    <li><a href="#">Интернет-магазины</a></li>
-                                    <li><a href="#">Корпоративные сайты</a></li>
-                                    <li><a href="#">Лендинги</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Мобильные приложения</a></li>
-                            <li><a href="#">Контекстная реклама</a></li>
-                            <li class="js-dropdown">
-                                <a href="#">Интеграции</a>
-                                <i class="icon-arrow"></i>
-                                <ul class="header__dropdown-menu">
-                                    <li><a href="#">Интернет-магазины</a></li>
-                                    <li><a href="#">Корпоративные сайты</a></li>
-                                    <li><a href="#">Лендинги</a></li>
-                                </ul>
-                            </li>
-                            <li class="js-dropdown">
-                                <a href="#">Дизайн</a>
-                                <i class="icon-arrow"></i>
-                                <ul class="header__dropdown-menu">
-                                    <li><a href="#">Интернет-магазины</a></li>
-                                    <li><a href="#">Корпоративные сайты</a></li>
-                                    <li><a href="#">Лендинги</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Лицензии 1С-Битрикс</a></li>
-                        </ul>
-                    </nav>
+
+                    <div class="header__menu-wrapper">
+                        <!-- Шапка подменю (drill-down header) -->
+                        <div class="header__submenu-header" id="submenu-header">
+                            <button class="header__back-btn" id="submenu-back">
+                                <img src="./img/icons/arrow-left.svg" alt="Назад">
+                            </button>
+                            <div class="header__submenu-utils">
+                                <button class="header__mobile-icon"><img src="./img/icons/search.svg"
+                                        alt="Поиск"></button>
+                                <button class="header__mobile-icon"><img src="./img/icons/cancel.svg"
+                                        alt="Отменить"></button>
+                            </div>
+                        </div>
+
+                        <!-- Основной выбор языка -->
+                        <div class="header__mobile-langs mobile-only">
+                            <button class="lang-btn is-active">Рус</button>
+                            <button class="lang-btn">Қаз</button>
+                            <button class="lang-btn">Eng</button>
+                        </div>
+
+                        <nav class="header__menu">
+                            <!-- Главный список -->
+                            <ul class="header__menu-list" id="main-menu-list">
+                                <li class="js-drilldown" data-target="sites-menu">
+                                    <span>Сайты</span>
+                                    <i class="icon-arrow"></i>
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+                                <li><a href="#">Мобильные приложения</a></li>
+                                <li><a href="#">Контекстная реклама</a></li>
+                                <li class="js-drilldown" data-target="integrations-menu">
+                                    <span>Интеграции</span>
+                                    <i class="icon-arrow"></i>
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+                                <li class="js-drilldown" data-target="sites-menu">
+                                    <span>Дизайн</span>
+                                    <i class="icon-arrow"></i>
+                                    <i class="icon-arrow-right"></i>
+                                </li>
+                                <li><a href="#">Лицензии 1С-Битрикс</a></li>
+                                <div class="header__menu-extra">
+                                    <a href="#" class="mobile-extra-link">
+                                        <img src="./img/icons/portfolio.svg" alt="">
+                                        <span>Наши проекты</span>
+                                    </a>
+                                    <a href="#" class="mobile-extra-link">
+                                        <img src="./img/icons/play.svg" alt="">
+                                        <span>Showreel</span>
+                                    </a>
+                                </div>
+                            </ul>
+
+                            <!-- Вложенные списки (подменю) -->
+                            <ul class="header__submenu-list" id="sites-menu">
+                                <li><a href="#">Интернет-магазин</a></li>
+                                <li><a href="#">Индивидуальная разработка</a></li>
+                                <li><a href="#">Сайт-каталог</a></li>
+                                <li><a href="#">Landing-page</a></li>
+                                <li><a href="#">Разработка на Tilda</a></li>
+                            </ul>
+
+                            <ul class="header__submenu-list" id="integrations-menu">
+                                <li><a href="#">1С-Битрикс</a></li>
+                                <li><a href="#">AmoCRM</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -586,7 +640,45 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Siter UI. Все права защищены.</p>
+            <div class="footer__inner">
+                <!-- Новый контейнер для нижней части -->
+                <div class="footer__bottom">
+                    <div class="footer__info">
+                        <p>©2026 ТОО «Компания Siter.KZ»</p>
+                        <p>Все права защищены</p>
+                    </div>
+                </div>
+
+                <hr class="footer__line">
+
+                <!-- Блок со ссылками (Верхняя часть) -->
+                <div class="footer__nav">
+                    <div class="footer__col">
+                        <a href="#">О нас</a>
+                        <a href="#">Портфолио</a>
+                        <a href="#">Блог</a>
+                        <a href="#">Контакты</a>
+                    </div>
+                    <div class="footer__col">
+                        <a href="#">Создание сайтов</a>
+                        <a href="#">Интернет-магазины</a>
+                        <a href="#">Индивидуальные решения</a>
+                        <a href="#">Гранты на разработку</a>
+                    </div>
+                    <div class="footer__col">
+                        <a href="#">Интеграция с 1С</a>
+                        <a href="#">Контекстная реклама</a>
+                        <a href="#">SEO продвижение</a>
+                        <a href="#">Поддержка сайтов</a>
+                    </div>
+                    <div class="footer__contacts">
+                        <p>Алматы: <strong>8 727 3 124 226</strong></p>
+                        <p>Астана: <strong>8 7172 696 226</strong></p>
+                        <p>Караганда: <strong>8 7212 940 226</strong></p>
+                        <p>Мобильный: <strong>8 747 094 92 26</strong></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 

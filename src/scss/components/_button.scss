@@ -17,7 +17,7 @@
 
     &:hover {
       // Заменяем darken на color.adjust
-      background-color: color.adjust($color-primary, $lightness: -10%);
+      background-color: #D647BE;
     }
   }
 }

@@ -1,9 +1,17 @@
-@use '../base/variables' as *;
-@use '../base/mixins' as *;
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
 
 .header {
   width: 100%;
   font-family: $font-main;
+
+  &__mobile-bar,
+  &__submenu-header,
+  &__submenu-list,
+  &__menu-extra,
+  .mobile-only {
+    display: none;
+  }
 
   &__top {
     border-bottom: 1px solid $color-border;
@@ -61,6 +69,11 @@
     }
   }
 
+  // Скрываем стрелку "вправо" на десктопе
+  .icon-arrow-right {
+    display: none;
+  }
+
   &__main {
     padding: 33px 0;
 
@@ -102,7 +115,9 @@
 
       .icon-arrow {
         // Настраиваем плавность для стрелки
-        transition: transform $transition-default, border-top-color $transition-default;
+        transition:
+          transform $transition-default,
+          border-top-color $transition-default;
       }
 
       &:active {
@@ -139,7 +154,7 @@
 
   &__dropdown-menu {
     position: absolute;
-    top: 100%; 
+    top: 100%;
     left: 0;
     min-width: 200px;
     background: $color-white;
@@ -148,7 +163,7 @@
     padding: 15px 0;
     list-style: none;
     z-index: 100;
-    
+
     // Плавное появление
     opacity: 0;
     visibility: hidden;
@@ -156,8 +171,8 @@
     transition: all $transition-default;
 
     li {
-      padding: 0 !important; 
-      
+      padding: 0 !important;
+
       a {
         display: block;
         padding: 8px 20px;
@@ -175,7 +190,7 @@
   }
 
   .js-dropdown {
-    position: relative; 
+    position: relative;
 
     &.is-active {
       .header__dropdown-menu {
@@ -186,6 +201,323 @@
       .icon-arrow {
         transform: rotate(180deg);
       }
+    }
+  }
+
+  .icon-arrow {
+    display: inline-block;
+  }
+  .icon-arrow-right {
+    display: none;
+  }
+
+  @media (max-width: 1023px) {
+    &__submenu-header {
+      display: none; // Скрыто на десктопе и в главном меню мобилки
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid $color-border;
+      min-height: 60px;
+    }
+
+    &__submenu-utils {
+      display: flex;
+      align-items: center;
+      gap: 20px; // Расстояние между поиском и крестиком
+    }
+
+    &__top {
+      display: none;
+    } // Прячем верхнюю полосу
+
+    &__mobile-bar {
+      display: block;
+      border-bottom: 1px solid $color-border;
+    }
+
+    &__mobile-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    &__mobile-utils {
+      display: flex;
+      align-items: center;
+      gap: 33px;
+    }
+
+    &__burger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      span {
+        width: 24px;
+        height: 2px;
+        background: $color-text-main;
+        transition: $transition-default;
+      }
+    }
+
+    // Мобильное меню (выезжает справа)
+    &__menu-wrapper {
+      position: fixed;
+      top: 61px;
+      right: 0;
+      width: 100%;
+      height: calc(100vh - 61px);
+      background: $color-white;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      overflow-y: auto;
+      z-index: 999;
+
+      &.is-submenu-active {
+        .header__mobile-langs,
+        .header__menu-list {
+          display: none;
+        }
+        .header__submenu-header {
+          display: flex;
+        }
+        .header__submenu-list.is-active {
+          display: block;
+        }
+      }
+    }
+
+    &__submenu-list {
+      display: none; // Скрыты по умолчанию
+      list-style: none;
+      padding: 0;
+
+      li {
+        border-bottom: 1px solid #f5f5f5;
+        padding: 15px 20px;
+
+        a {
+          font-size: 17px;
+          color: $color-text-main;
+          display: block;
+          font-weight: 400;
+        }
+      }
+    }
+
+    // Иконка стрелочки вправо для главного списка
+    .icon-arrow-right {
+      width: 15px;
+      height: 15px;
+      background: url("../../img/icons/arrow-right.svg") no-repeat center;
+    }
+
+    &__main {
+      padding: 0;
+    }
+    .desktop-only {
+      display: none;
+    }
+    .mobile-only {
+      display: flex;
+    }
+
+    &__menu-list {
+      flex-direction: column;
+      gap: 0;
+      li {
+        border-bottom: 1px solid #f5f5f5;
+        padding: 15px 21px;
+        width: 100%;
+        justify-content: space-between;
+        font-size: 17px;
+        font-weight: 700;
+
+        .icon-arrow {
+          display: none !important;
+        }
+
+        // ПОКАЗЫВАЕМ стрелку-картинку (мобильную)
+        .icon-arrow-right {
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          background: url("../../img/icons/arrow-right.svg") no-repeat center;
+        }
+
+        // Стили для мобильного выпадающего списка (аккордеон)
+        .header__dropdown-menu {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          display: none; // Скрываем по умолчанию
+          box-shadow: none;
+          transform: none;
+          padding-left: 20px;
+        }
+
+        &.is-active .header__dropdown-menu {
+          display: block;
+        }
+      }
+    }
+
+    &__mobile-langs {
+      padding: 0 20px 20px;
+      gap: 15px;
+      .lang-btn {
+        font-weight: 700;
+        font-size: 16px;
+        color: #ccc;
+        &.is-active {
+          color: $color-primary;
+        }
+      }
+    }
+
+    &__menu-extra {
+      // <--- Убедись, что и тут два подчеркивания
+      display: flex; // ОБЯЗАТЕЛЬНО добавь это, чтобы блок появился
+      margin-top: auto;
+      background: #f9f9f9;
+      padding: 0 20px;
+      flex-direction: column;
+
+      a {
+        display: flex;
+        padding: 21.5px 0;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        color: $color-text-main;
+        border-bottom: 1px solid #f5f5f5;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    &__mobile-inner {
+      height: 56px;
+      padding: 0 15px;
+    }
+
+    &__logo {
+      img {
+        max-width: 110px;
+        height: auto;
+      }
+    }
+
+    &__mobile-utils {
+      gap: 15px;
+    }
+
+    &__menu-wrapper {
+      top: 57px;
+      height: calc(100vh - 57px);
+      padding: 15px 0 0;
+    }
+
+    // --- Списки и ссылки ---
+    &__menu-list {
+      li {
+        padding: 14px 20px;
+        font-size: 16px;
+
+        .icon-arrow-right {
+          width: 12px; // Чуть меньше иконка
+          background-size: contain;
+        }
+      }
+    }
+
+    &__submenu-header {
+      min-height: 56px;
+      padding: 0 15px;
+
+      .header__back-btn {
+        width: 32px;
+        height: 32px;
+      }
+
+      .header__submenu-utils {
+        gap: 12px;
+      }
+    }
+
+    &__submenu-list {
+      top: 56px;
+      li {
+        padding: 14px 20px;
+        a {
+          font-size: 16px;
+        }
+      }
+    }
+
+    &__mobile-langs {
+      padding: 15px 20px;
+      margin-bottom: 5px;
+
+      .lang-btn {
+        font-size: 15px;
+        padding: 5px 0;
+      }
+    }
+
+    &__menu-extra {
+      padding: 0;
+
+      a {
+        padding: 18px 20px;
+        font-size: 15px;
+        gap: 12px;
+
+        img {
+          width: 18px;
+        }
+
+        span {
+          flex: 1;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  // Специфическая правка для самых маленьких экранов (iPhone SE и т.д.)
+  @media (max-width: 350px) {
+    .header {
+      &__mobile-utils {
+        gap: 10px; // Еще плотнее на 320px
+      }
+      &__logo img {
+        max-width: 95px;
+      }
+    }
+  }
+}
+
+body.menu-open {
+  overflow: hidden;
+  .header__menu-wrapper {
+    transform: translateX(0);
+  }
+  .header__burger {
+    span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
   }
 }

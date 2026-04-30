@@ -1,7 +1,8 @@
 @use "../base/variables" as *;
 
 .services {
-    margin-bottom: 54px;
+  margin-bottom: 54px;
+
   &__row {
     display: flex;
     justify-content: space-between;
@@ -11,7 +12,7 @@
   &__content {
     flex: 0 1 570px;
     width: 100%;
-    max-width: 570px;
+    // Убираем жесткий max-width, чтобы на планшетах блоки могли сужаться
     .btn {
       padding: 11px 20px;
       font-size: 17px;
@@ -19,7 +20,7 @@
   }
 
   &__title {
-    font-size: $fs-h2; // Используем твою переменную 42px
+    font-size: $fs-h2;
     font-weight: 700;
     color: $color-text-main;
   }
@@ -27,7 +28,7 @@
   &__description {
     font-size: 20px;
     font-weight: 400;
-    line-height: 1.4; // Добавь межстрочный интервал как в макете
+    line-height: 1.4;
     color: $color-text-main;
     width: 100%;
     margin: 30px 0;
@@ -36,21 +37,58 @@
   &__grid {
     flex: 0 1 570px;
     width: 100%;
-    max-width: 570px;
-
     display: grid;
-    grid-template-columns: repeat(1, 1fr); // Пока одна в ряд, как на скрине
+    grid-template-columns: repeat(1, 1fr);
     gap: 20px;
   }
 }
 
-// Адаптивность под ТЗ (Планшет и Мобилка)
-@media (max-width: 1023px) {
-  .services__row {
-    flex-direction: column; // Стак колонкой на планшетах и ниже
+// --- Адаптивность ---
+
+// Планшетная версия (768px - 1023px)
+@media (min-width: 768px) and (max-width: 1023px) {
+  .services {
+    &__row {
+      flex-direction: row; // Принудительно оставляем 2 колонки
+      align-items: flex-start;
+    }
+
+    &__content,
+    &__grid {
+      flex: 1; // Делим пространство 50/50
+      max-width: none; // Позволяем контенту подстраиваться под ширину
+    }
+
+    &__title {
+      font-size: 32px; // Немного уменьшаем заголовок, чтобы влез
+    }
+
+    &__description {
+      font-size: 18px;
+    }
   }
-  .services__content,
-  .services__grid {
-    flex: 0 1 100%;
+}
+
+// Мобильная версия (до 767px)
+@media (max-width: 767px) {
+  .services {
+    &__row {
+      flex-direction: column; // Здесь уже стакаем в одну колонку
+      gap: 40px;
+    }
+
+    &__content,
+    &__grid {
+      flex: 0 1 100%;
+    }
+
+    &__description {
+      margin: 20px 0;
+      font-size: 16px;
+    }
+
+    .btn {
+      width: 100%; // Кнопка на всю ширину
+    }
   }
 }
