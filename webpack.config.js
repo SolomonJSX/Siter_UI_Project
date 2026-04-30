@@ -17,6 +17,7 @@ module.exports = {
     },
     entry: path.resolve(__dirname, 'src', 'main.js'),
     output: {
+        publicPath: 'auto',
         path: path.join(__dirname, 'dist'),
         filename: 'index.[contenthash].js',
     },
