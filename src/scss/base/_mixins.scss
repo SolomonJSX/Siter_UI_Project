@@ -1,26 +1,32 @@
 @use 'variables' as *;
 
+// Выравнивание элементов по краям (используется в &-inner)
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Элемент с иконкой и текстом (используется в li)
 @mixin flex-icon($gap: 8px, $font-weight: 600, $color: $color-text-main) {
-    display: flex;
-    align-items: center;
-    gap: $gap;
-    font-weight: $font-weight;
-    color: $color;
-    text-decoration: none;
-    cursor: pointer;
-    transition: color $transition-default;
+  display: flex;
+  align-items: center;
+  gap: $gap;
+  font-weight: $font-weight;
+  color: $color;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color $transition-default;
 
-    .icon-arrow {
-        display: inline-block;
-        width: 0;
-        height: 0;
-        vertical-align: middle;
-        
-        // Базовый треугольник (вниз) для десктопа
-        border-left: 4.4px solid transparent;
-        border-right: 4.4px solid transparent;
-        border-top: 4.4px solid currentColor; // Используем currentColor, чтобы цвет менялся вместе с текстом
-
-        transition: all $transition-default;
-    }
+  // Базовая стрелка-треугольник для десктопа
+  .icon-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+    border-left: 4.4px solid transparent;
+    border-right: 4.4px solid transparent;
+    border-top: 4.4px solid currentColor;
+    transition: transform $transition-default;
+  }
 }

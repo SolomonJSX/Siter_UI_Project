@@ -1,0 +1,126 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+// Стили только для экранов от 1024px и выше
+@media (min-width: 1024px) {
+  .header {
+    &__mobile-bar,
+    &__submenu-header,
+    &__submenu-list,
+    &__mobile-langs,
+    &__menu-extra,
+    .mobile-only {
+      display: none; // Убираем !important, он больше не нужен
+    }
+
+    &__top {
+      display: block;
+      border-bottom: 1px solid $color-border;
+      padding: 12.5px 0;
+      &-inner { display: flex; justify-content: space-between; align-items: center; }
+      &-nav {
+        font-size: 14px;
+        vertical-align: middle;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      &-utils {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        font-weight: 600;
+        font-size: 17px;
+        vertical-align: middle;
+      }
+
+      &-dropdown {
+        @include flex-icon(10px, 400); // <--- Теперь стрелка "оживет"
+
+        // Чтобы стрелка крутилась в верхней панели при открытии
+        &.is-active .icon-arrow {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &__portfolio {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    &__main {
+      display: block;
+      padding: 33px 0;
+      &-inner { display: flex; align-items: center; gap: 47px; }
+    }
+
+    &__menu-list {
+      display: flex;
+      gap: 31px;
+      li {
+        @include flex-icon(5px, 700);
+        .icon-arrow {
+          border-left: 4px solid transparent;
+          border-right: 4px solid transparent;
+          border-top: 4px solid currentColor;
+        }
+        &:hover {
+          color: $color-primary;
+          .icon-arrow { transform: rotate(180deg); }
+        }
+      }
+    }
+
+    .icon-arrow-down {
+      display: inline-block;
+      width: 10px;
+      height: 6px;
+      vertical-align: middle;
+      transition: transform $transition-default;
+      flex-shrink: 0; // Чтобы иконка не сжималась, если текст длинный
+
+      path {
+        fill: none; // На всякий случай дублируем здесь
+        stroke: currentColor; // Берет цвет текста
+      }
+    }
+
+    .header__phone,
+    .header__lang {
+      display: flex;
+      align-items: center;
+    }
+
+    // Если хочешь, чтобы она крутилась при ховере:
+    .header__phone:hover .icon-arrow-down,
+    .header__lang:hover .icon-arrow-down {
+      transform: rotate(180deg);
+    }
+
+    &__dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 15px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: 0.3s;
+      z-index: 100;
+
+      li a {
+        display: block;
+        padding: 8px 20px;
+        &:hover { background: $color-secondary; color: $color-primary; }
+      }
+    }
+  }
+}
