@@ -5,8 +5,9 @@ import { initDropdowns } from './js/modules/dropdown'
 import { initSlider } from './js/modules/slider'
 import { initAccordion } from './js/modules/accordion'
 import { initSelectDropdown } from './js/modules/select-dropdown';
-import {initBurger, initHeader} from './js/modules/header';
+import { initBurger } from './js/modules/header';
 import 'swiper/swiper-bundle.css';
+import {initFormLogic} from "./js/modules/form-logic";
 
 document.addEventListener('DOMContentLoaded', () => {
     initAccordion();
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMarquee();
     initDropdowns();
     initSlider();
-    initSelectDropdown();
     initBurger();
+    initFormLogic();
+    initSelectDropdown();
 });

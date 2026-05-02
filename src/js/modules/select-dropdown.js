@@ -1,48 +1,47 @@
 export const initSelectDropdown = () => {
-    // Ищем все элементы с этим классом
-    const customSelects = document.querySelectorAll('.js-custom-select');
+    // Ищем все селекты по новому классу
+    const selects = document.querySelectorAll('.js-select');
 
-    customSelects.forEach(select => {
-        const header = select.querySelector('.custom-select__header');
-        const valueDisplay = select.querySelector('.custom-select__value');
-        const options = select.querySelectorAll('.custom-select__option');
-        const hiddenInput = select.querySelector('input[type="hidden"]');
+    selects.forEach(select => {
+        const header = select.querySelector('.js-select-header');
+        const options = select.querySelectorAll('.js-select-option');
+        const valueDisplay = select.querySelector('.js-select-value');
+        const hiddenInput = select.querySelector('.js-select-input');
 
-        // 1. Клик по шапке — открываем/закрываем
+        // 1. Открытие / Закрытие
         header.addEventListener('click', (e) => {
             e.stopPropagation();
-            
-            // Закрываем другие селекты, если они открыты
-            document.querySelectorAll('.js-custom-select').forEach(other => {
-                if (other !== select) other.classList.remove('is-active');
+
+            // Закрываем все остальные селекты на странице
+            selects.forEach(s => {
+                if (s !== select) s.classList.remove('is-open');
             });
 
-            select.classList.toggle('is-active');
+            // Переключаем класс is-open у текущего
+            select.classList.toggle('is-open');
         });
 
-        // 2. Клик по опции — выбираем значение
+        // 2. Выбор пункта меню
         options.forEach(option => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
-                
-                const val = option.dataset.value;
+
+                const value = option.getAttribute('data-value');
                 const text = option.textContent;
 
-                // Обновляем визуальную часть и скрытый инпут
+                // Меняем текст и скрытое значение
                 valueDisplay.textContent = text;
-                if (hiddenInput) hiddenInput.value = val;
+                if (hiddenInput) hiddenInput.value = value;
 
-                // Убираем активный класс у всех опций и ставим текущей
-                options.forEach(opt => opt.classList.remove('is-selected'));
-                option.classList.add('is-selected');
-
-                select.classList.remove('is-active');
+                // Закрываем список и меняем стиль на "выбрано"
+                select.classList.remove('is-open');
+                select.classList.add('is-selected');
             });
         });
     });
 
-    // 3. Закрытие при клике в любое другое место
+    // 3. Закрытие при клике мимо
     document.addEventListener('click', () => {
-        customSelects.forEach(select => select.classList.remove('is-active'));
+        selects.forEach(select => select.classList.remove('is-open'));
     });
 };

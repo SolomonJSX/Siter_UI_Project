@@ -39,6 +39,7 @@
     "not dead"
   ],
   "dependencies": {
+    "imask": "^7.6.1",
     "swiper": "^12.1.4"
   }
 }

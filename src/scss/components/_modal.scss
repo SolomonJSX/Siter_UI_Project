@@ -80,33 +80,59 @@
 .form-group {
   margin-bottom: 16px;
   position: relative;
+  &:has(.js-custom-select.is-active) {
+    z-index: 100;
+  }
 }
 
 // Обертка, которая имитирует поле ввода
 .input-wrapper,
-.select-wrapper,
 .textarea-wrapper {
   position: relative;
   background: #ffffff;
   border-radius: 5px;
-  padding: 10px 16px; // Внутренний отступ для всего блока
+  padding: 10px 16px 8px;
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
-  min-height: 64px;
+  min-height: 56px;
+  cursor: text;
 
   box-shadow: 0px 0px 15px 0px #1F2A331A;
 
   &:focus-within {
     border-color: $color-primary;
-    box-shadow: 0px 0px 15px 0px rgba(31, 42, 51, 0.2), 0 0 0 1px $color-primary;
+    box-shadow: 0px 0px 15px 0px rgba(31, 42, 51, 0.2), 0 0 0 1px transparent;
   }
 
   // Заголовок внутри блока
   .form-label {
-    font-size: 12px;
-    font-weight: 400;
-    color: $color-input-label;
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    font-size: 16px; // Размер в спокойном состоянии (как плейсхолдер)
+    transition: all 0.2s ease;
+    pointer-events: none;
+    color: #B0C1D0;
+  }
+
+  &.is-active {
+    .form-label {
+      top: 6px;
+      font-size: 12px;
+      color: #A0AEC0;
+    }
+    .input-field,
+    .textarea-field {
+      opacity: 1; // Проявляем текст
+    }
+  }
+
+  .input-field {
+    margin-top: 10px;
+    opacity: 0; // Скрываем инпут, пока нет фокуса или текста
+    transition: opacity 0.2s;
+    color: #343037; // Черный цвет текста
   }
 }
 
@@ -121,6 +147,9 @@
   font-weight: 500;
   color: $color-text-main;
   outline: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  margin-top: 10px;
 
   &::placeholder {
     color: #cbd5e0;
@@ -131,7 +160,6 @@
 .textarea-field {
   min-height: 80px;
   resize: none;
-  margin-top: 5px;
 }
 
 // Иконки и кастомные стрелки
@@ -148,97 +176,112 @@
 .custom-select {
   position: relative;
   width: 100%;
-  user-select: none;
-  background: #ffffff;
+
+  // Состояние: когда селект ОТКРЫТ
+  &.is-open {
+    z-index: 999; // Поднимаем выше всех только когда открыт
+
+    .custom-select__header {
+      box-shadow: 0 0 0 1px $color-primary; // Рамка при фокусе
+    }
+
+    .custom-select__arrow {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .custom-select__dropdown {
+      display: block; // ЖЕСТКО показываем список
+      animation: selectFadeIn 0.2s ease forwards; // Плавное появление
+    }
+  }
+
+  // Состояние: когда опция ВЫБРАНА
+  &.is-selected {
+    .custom-select__label {
+      display: block;
+    }
+    .custom-select__value {
+      color: #343037; // Черный текст
+      font-weight: 600;
+    }
+  }
 
   &__header {
-    position: relative;
-    border-radius: 5px;
-    padding: 12px 16px;
-    cursor: pointer;
+    background: #fff;
+    border-radius: 12px;
+    min-height: 64px;
+    padding: 10px 16px;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease;
-    min-height: 64px;
     justify-content: center;
-    box-shadow: 0px 0px 15px 0px #1F2A331A;
-    padding-right: 45px;
+    cursor: pointer;
+    user-select: none; // Убираем синее выделение текста
+    position: relative;
+    box-shadow: 0px 0px 15px 0px rgba(31, 42, 51, 0.1);
+    transition: all 0.2s ease;
   }
 
   &__label {
+    display: none;
     font-size: 12px;
-    color: #a0aec0; // Тот самый бледный цвет со скрина
+    color: #A0AEC0;
     margin-bottom: 2px;
   }
 
   &__value {
-    font-size: 15px;
-    font-weight: 400;
     color: #B0C1D0;
-    line-height: 100%;
+    font-size: 16px;
+    transition: color 0.2s;
   }
 
   &__arrow {
     position: absolute;
-    right: 16px; // Немного подогнал под общий отступ
+    right: 16px;
     top: 50%;
     transform: translateY(-50%);
     transition: transform 0.3s ease;
-    pointer-events: none; // Клик будет проходить сквозь стрелку на хедер
     display: flex;
     align-items: center;
-
-    svg {
-      display: block; // Убирает лишние пиксели снизу у инлайновых элементов
-    }
-  }
-
-  // Состояние при открытии
-  &.is-active {
-    .custom-select__arrow {
-      // Важно оставить translateY, иначе стрелка улетит вверх при повороте
-      transform: translateY(-50%) rotate(180deg);
-    }
-    .custom-select__header {
-      border-color: $color-primary;
-    }
-    .custom-select__arrow {
-      transform: translateY(-50%) rotate(180deg);
-    }
-    .custom-select__dropdown {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
+    pointer-events: none;
   }
 
   &__dropdown {
+    display: none; // ЖЕСТКО скрываем список по умолчанию
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
     width: 100%;
     background: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); // Мягкая тень как на скрине
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); // Тень стала чуть заметнее
     padding: 8px 0;
-    z-index: 100;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
+    // Огромный z-index для списка, чтобы пробить любые ограничения
+    z-index: 1000;
   }
 
   &__option {
     padding: 12px 20px;
     font-size: 15px;
-    color: #a0aec0; // Цвет текста опций
+    color: #a0aec0;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s;
 
     &:hover {
       background: #f8fafc;
       color: $color-primary;
     }
+  }
+}
+
+// Анимация для выпадающего списка
+@keyframes selectFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -304,7 +347,6 @@
     line-height: 24px;
     color: $color-input-label;
     font-weight: 400;
-    line-height: 18px; // Чтобы было "- whatsapp" как на скрине
   }
 }
 
@@ -365,19 +407,21 @@
   }
 }
 
-.btn--full {
-  display: block;     
-  margin-left: auto;    
-  margin-right: auto;   
-  margin-top: 43px;
-  
+.modal__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // margin: 0 auto центрирует блочный элемент.
+  // 35px — это отступ сверху от чекбоксов (можешь подогнать под макет)
+  margin: 35px auto 0;
+
+  // Данные из твоего макета
+  width: 213px;
+  height: 49px;
   padding: 14px 60px;
-  font-size: 18px;
-  font-weight: 700;
-  border-radius: 12px;
-  width: fit-content;   
-  border: none;         
-  cursor: pointer;
+  border-radius: 5px;
+  gap: 10px;
 }
 
 // Адаптив для мобильных

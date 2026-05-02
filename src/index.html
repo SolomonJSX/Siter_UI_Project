@@ -689,40 +689,53 @@
         <h2 class="modal__title">Оставьте заявку</h2>
 
         <form class="modal__form">
+            <!-- Имя -->
             <div class="form-group">
-                <div class="input-wrapper">
+                <div class="input-wrapper js-input-item">
                     <label class="form-label">Имя *</label>
                     <input type="text" class="input-field" placeholder="Сергей" required>
                     <img src="./img/icons/user-icon.svg" class="input-icon" alt="">
                 </div>
             </div>
 
+            <!-- Телефон -->
             <div class="form-group">
-                <div class="custom-select js-custom-select">
-                    <div class="custom-select__header">
-                        <span class="custom-select__value">Удобный способ связи</span>
-
-                        <div class="custom-select__arrow">
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M1 1.5L6 6.5L11 1.5" stroke="#A0AEC0" stroke-width="1.5"
-                                      stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="custom-select__dropdown">
-                        <div class="custom-select__option" data-value="phone">Звонок</div>
-                        <div class="custom-select__option" data-value="email">E-mail</div>
-                        <div class="custom-select__option" data-value="whatsapp">WhatsApp</div>
-                    </div>
-
-                    <input type="hidden" name="contact_method" value="phone">
+                <div class="input-wrapper js-input-item">
+                    <label class="form-label">Телефон с WhatsApp *</label>
+                    <input type="text" class="input-field js-phone-mask" placeholder="+7 (___) ___-__-__" required>
+                    <img src="./img/icons/phone-icon.svg" class="input-icon" alt="">
                 </div>
             </div>
 
+            <!-- Удобный способ связи -->
             <div class="form-group">
-                <div class="textarea-wrapper">
-                    <textarea class="textarea-field" placeholder="Сообщение"></textarea>
+                <div class="custom-select js-select">
+                    <!-- Скрытый инпут для отправки формы -->
+                    <input type="hidden" name="contact_method" class="js-select-input" required>
+
+                    <!-- Шапка селекта -->
+                    <div class="custom-select__header js-select-header">
+                        <span class="custom-select__label">Удобный способ связи</span>
+                        <span class="custom-select__value js-select-value">Удобный способ связи</span>
+                        <div class="custom-select__arrow">
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="#A0AEC0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Выпадающий список -->
+                    <div class="custom-select__dropdown js-select-dropdown">
+                        <div class="custom-select__option js-select-option" data-value="phone">Звонок</div>
+                        <div class="custom-select__option js-select-option" data-value="email">E-mail</div>
+                        <div class="custom-select__option js-select-option" data-value="whatsapp">WhatsApp</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сообщение -->
+            <div class="form-group">
+                <div class="textarea-wrapper js-input-item">
+                    <label class="form-label">Сообщение</label>
+                    <textarea class="textarea-field"></textarea>
                 </div>
             </div>
 
@@ -747,7 +760,7 @@
                 </label>
             </div>
 
-            <button class="btn btn--primary js-open-modal">Отправить</button>
+            <button type="submit" class="btn btn--primary modal__submit">Отправить</button>
         </form>
     </div>
 </div>
