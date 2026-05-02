@@ -37,5 +37,8 @@
     "last 2 versions",
     "> 0.5%",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "swiper": "^12.1.4"
+  }
 }

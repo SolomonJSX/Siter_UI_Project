@@ -6,6 +6,7 @@ import { initSlider } from './js/modules/slider'
 import { initAccordion } from './js/modules/accordion'
 import { initSelectDropdown } from './js/modules/select-dropdown';
 import {initBurger, initHeader} from './js/modules/header';
+import 'swiper/swiper-bundle.css';
 
 document.addEventListener('DOMContentLoaded', () => {
     initAccordion();

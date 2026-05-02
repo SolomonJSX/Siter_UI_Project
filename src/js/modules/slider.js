@@ -1,43 +1,45 @@
+import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
+
 export const initSlider = () => {
-    const wrapper = document.getElementById('caseWrapper');
-    const slides = document.querySelectorAll('.cases__slide');
-    const prevBtn = document.getElementById('casePrev');
-    const nextBtn = document.getElementById('caseNext');
-    const pagination = document.getElementById('casePagination');
+    // Находим все контейнеры слайдеров на странице
+    const sliderContainers = document.querySelectorAll('.cases__slider-container');
 
-    if (!wrapper || slides.length === 0) return;
+    sliderContainers.forEach(container => {
+        // Для каждого контейнера находим его собственные элементы управления
+        // Это позволяет иметь несколько независимых слайдеров на одной странице
+        const sliderEl = container.querySelector('.js-cases-slider');
+        const nextBtn = container.querySelector('.js-cases-next');
+        const prevBtn = container.querySelector('.js-cases-prev');
 
-    let currentIndex = 0;
+        // Пагинация может быть вне контейнера кнопок, ищем в ближайшем родителе (секции)
+        const section = container.closest('.cases');
+        const paginationEl = section.querySelector('.js-cases-pagination');
 
-    // Создаем точки пагинации
-    slides.forEach((_, i) => {
-        const dot = document.createElement('span');
-        if (i === 0) dot.classList.add('is-active');
-        dot.addEventListener('click', () => goToSlide(i));
-        pagination.appendChild(dot);
-    });
+        if (!sliderEl) return;
 
-    const dots = pagination.querySelectorAll('span');
+        new Swiper(sliderEl, {
+            modules: [Navigation, Pagination],
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            speed: 600,
+            grabCursor: true,
 
-    function updateSlider() {
-        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('is-active', i === currentIndex);
+            pagination: {
+                el: paginationEl,
+                clickable: true,
+            },
+
+            navigation: {
+                nextEl: nextBtn,
+                prevEl: prevBtn,
+            },
+
+            breakpoints: {
+                320: { autoHeight: false },
+                1024: { autoHeight: false }
+            }
         });
-    }
-
-    function goToSlide(index) {
-        currentIndex = index;
-        updateSlider();
-    }
-
-    nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlider();
-    });
-
-    prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateSlider();
     });
 };

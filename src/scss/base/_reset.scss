@@ -12,6 +12,11 @@ figure, figcaption, blockquote, dl, dd {
   padding: 0;
 }
 
+body {
+  overflow-x: hidden; // Запрещает горизонтальную прокрутку на всем сайте
+  width: 100%;
+}
+
 ul, ol {
   list-style: none; // Убираем маркеры списков (точки)
 }

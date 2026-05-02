@@ -1,18 +1,21 @@
 export const initMarquee = () => {
-    const marqueeInner = document.getElementById('marquee-inner');
-    
-    if (!marqueeInner) return;
+    // Ищем все элементы с этим классом
+    const marquees = document.querySelectorAll('.js-marquee-inner');
 
-    // Клонируем содержимое один раз, чтобы создать эффект бесконечности
-    const content = marqueeInner.innerHTML;
-    marqueeInner.innerHTML = content + content;
+    if (!marquees.length) return;
 
-    // Опционально: Остановка при наведении (пауза)
-    marqueeInner.addEventListener('mouseenter', () => {
-        marqueeInner.style.animationPlayState = 'paused';
-    });
+    marquees.forEach(marqueeInner => {
+        // Клонируем содержимое для каждого конкретного элемента
+        const content = marqueeInner.innerHTML;
+        marqueeInner.innerHTML = content + content;
 
-    marqueeInner.addEventListener('mouseleave', () => {
-        marqueeInner.style.animationPlayState = 'running';
+        // Пауза при наведении для каждого элемента отдельно
+        marqueeInner.addEventListener('mouseenter', () => {
+            marqueeInner.style.animationPlayState = 'paused';
+        });
+
+        marqueeInner.addEventListener('mouseleave', () => {
+            marqueeInner.style.animationPlayState = 'running';
+        });
     });
 };

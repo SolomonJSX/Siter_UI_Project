@@ -52,6 +52,12 @@
       border: none;
       cursor: pointer;
       padding: 0;
+      z-index: 2101;
+      &.is-active {
+        span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        span:nth-child(2) { opacity: 0; }
+        span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      }
 
       span {
         display: block;
@@ -73,17 +79,22 @@
       background: #fff;
       transform: translateX(100%);
       transition: transform 0.3s ease-in-out;
-      z-index: 1000;
-      overflow-x: hidden;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
 
       &.is-submenu-active {
-        .header__menu-list,
-        .header__mobile-langs,
-        .header__menu-extra {
-          display: none; // Скрываем основной контент, когда заходим внутрь категории
+        top: 0; // Прыгает на самый верх, чтобы показать кнопку "Назад"
+        height: 100vh;
+        z-index: 2200;
+
+        // Когда мы в подменю, скрываем основной список
+        .header__menu-list, .header__mobile-langs, .header__menu-extra {
+          display: none;
         }
+
         .header__submenu-header {
-          display: flex; // Показываем только шапку с кнопкой "Назад"
+          display: flex; // Показываем навигационную панель (Назад, Поиск, Х)
         }
       }
     }
@@ -94,19 +105,29 @@
       justify-content: space-between;
       padding: 15px 20px;
       border-bottom: 1px solid #f5f5f5;
+      min-height: 60px;
 
       .header__back-btn {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
+        visibility: hidden; // По умолчанию скрыта (на главной странице меню)
+        &.is-visible { visibility: visible; } // Показываем только в подменю
       }
 
       .header__submenu-utils {
         display: flex;
         gap: 20px;
+        align-items: center;
+      }
+
+      &.is-submenu-active {
+        .header__back-btn {
+          visibility: visible;
+        }
+      }
+    }
+
+    &__menu-wrapper.is-submenu-active {
+      .header__back-btn {
+        visibility: visible;
       }
     }
 
