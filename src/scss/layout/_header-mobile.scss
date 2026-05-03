@@ -46,8 +46,8 @@
       flex-direction: column;
       justify-content: center;
       gap: 5px;
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       background: transparent;
       border: none;
       cursor: pointer;
@@ -183,7 +183,6 @@
     }
 
     &__menu-extra {
-      margin-top: auto; // Прижимаем к самому низу
       background: #f9f9f9;
       padding: 10px 20px;
 

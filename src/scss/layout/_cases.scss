@@ -14,7 +14,8 @@
   }
 
   &__subtitle {
-    font-size: 20px;
+    font-size: 28px;
+    font-weight: 700;
     span { color: $color-primary; font-weight: 700; }
   }
 
@@ -109,7 +110,8 @@
       inset: 0; // Растягивает картинку точно по границам контейнера
       width: 100%;
       height: 100%;
-      object-fit: cover; // Заполняет все пространство без искажений
+      object-fit: cover;
+      border-radius: 15px;
     }
   }
 
@@ -239,6 +241,14 @@
       flex-direction: column-reverse;
       align-items: flex-start;
       gap: 0;
+    }
+
+    &__header {
+      display: none;
+    }
+
+    &__pagination {
+      display: none;
     }
 
     &__image {

@@ -2,7 +2,7 @@
 
 .solutions {
   background-color: $color-white;
-
+  
   &__grid {
     display: grid;
     // 3 колонки одинаковой ширины
@@ -21,6 +21,6 @@
 @media (max-width: 767px) {
   .solutions__grid {
     grid-template-columns: 1fr; // 1 колонка на мобилках
-    gap: 16px;
+    gap: 20px;
   }
 }

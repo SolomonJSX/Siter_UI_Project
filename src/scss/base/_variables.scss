@@ -9,6 +9,13 @@ $color-bg-dark: #000000;
 $color-accent-purple: #A855F7; // Основное фиолетовое свечение
 $color-input-label: #B0C1D0;
 $color-accent-pink: #DC107E;   // Розовое свечение
+$color-input-label: #B0C1D0; // Цвет лейблов и плейсхолдеров
+$color-text-muted: #A0AEC0;  // Цвет активного лейбла и второстепенного текста
+$color-bg-alt: #e9eef2;      // Фон маркеров (чекбоксы/радио)
+$color-bg-hover: #d1d9e0;    // Ховер маркеров
+$color-overlay: rgba(0, 0, 0, 0.6); // Фон за модалкой
+$color-bg-light: #f8fafc;
+
 
 // 2. Типографика (Typography)
 $font-main: 'Inter', sans-serif; // Проверь название в Figma

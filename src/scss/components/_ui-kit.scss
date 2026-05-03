@@ -15,6 +15,7 @@
   align-items: center; // Центрирует __inner по вертикали
   font-family: $font-main;
   isolation: isolate;
+  padding: 40px 0;
 
   &__title {
     color: $color-white;
@@ -59,7 +60,7 @@
     z-index: 2;
     background-image: url("../../img/noise.webp"); // Ваша "Картинка 2"
     background-repeat: repeat;
-    opacity: 0.15; // Регулируйте прозрачность шума здесь
+    opacity: 0.25; // Регулируйте прозрачность шума здесь
     mix-blend-mode: overlay; // Шум будет виден только на светлых участках (градиентах)
     pointer-events: none;
     animation: noise-move 0.2s infinite; // Эффект мерцания/движения
@@ -102,12 +103,6 @@
   &__inner {
     position: relative;
     z-index: 10; // Контент всегда выше фона и шума
-    width: 100%;
-  }
-
-  &__inner {
-    position: relative;
-    z-index: 10;
     width: 100%;
   }
 
@@ -222,10 +217,16 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .ui-kit {
-    height: 450px; // Немного уменьшаем высоту
+    min-height: 450px; // Используем min-height
+    height: auto;      // Сбрасываем фиксированную высоту
+    padding: 60px 0;
 
     &__images {
       display: none; // ТРЕБОВАНИЕ: картинки исчезают
+    }
+
+    &__row {
+      margin-left: 5px;
     }
 
     &__content {
@@ -235,16 +236,48 @@
     }
 
     &__btns {
-      width: 100%;
+      margin-top: 40px;
+      display: flex;
+      gap: 10px; // Параметр из макета
+      width: auto; // Убираем 100%, чтобы кнопки не растягивались
+
+      .btn {
+        // Паддинги и скругление
+        padding: 14px 20px;
+        border-radius: 5px;
+
+        // Центрируем текст внутри кнопки
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // Остальные параметры
+        opacity: 1;
+        font-size: 17px; // Подберите под ваш макет
+        font-weight: 700;
+        line-height: 1; // Чтобы паддинги работали корректно при фиксированной высоте
+      }
     }
 
     // Корректируем градиентные пятна, чтобы они были по центру
     &__glow-purple {
-      left: 50%;
-      transform: translateX(-50%) rotate(30deg);
+      width: 400px; // Уменьшаем размер для планшета
+      height: 600px;
+      top: 100px;
+      left: 80%; // Сдвигаем вправо
+      transform: rotate(30deg);
+      filter: blur(90px);
     }
+
+    // 2. Розовое свечение (та самая "красная часть")
     &__glow-pink {
-      left: 30%;
+      width: 600px; // Увеличиваем визуальный охват
+      height: 600px;
+      top: 250px;    // Поднимаем выше, чтобы было за текстом
+      left: 55%;    // Центрируем под контентом
+      transform: translateX(-50%);
+      filter: blur(100px);
+      opacity: 0.8; // Делаем чуть ярче, как в дизайне
     }
   }
 }
@@ -276,19 +309,42 @@
     }
 
     &__btns {
-      flex-direction: column; // Кнопки одна под другой
+      display: flex;
+      flex-direction: column; // Кнопки в колонку
+      align-items: center;    // ЦЕНТРИРУЕМ кнопки по горизонтали
       gap: 15px;
       margin-top: 30px;
 
       .btn {
-        width: 100%; // Кнопки на всю ширину экрана
-        padding: 18px; // Увеличиваем область нажатия (tap target)
+        padding: 14px 20px; // При фиксированной высоте центрируем через flex
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 17px; // Подбери размер шрифта под макет
+        border-radius: 5px;
       }
     }
 
-    // Скрываем или сильно уменьшаем свечение, чтобы не нагружать мобильный браузер
-    &__glow {
-      opacity: 0.5;
+    &__glow-purple {
+      width: 400px; // Уменьшаем размер для планшета
+      height: 600px;
+      top: 40px;
+      left: 50%; // Сдвигаем вправо
+      transform: rotate(30deg);
+      filter: blur(90px);
+    }
+
+    // 2. Розовое свечение (та самая "красная часть")
+    &__glow-pink {
+      width: 600px; // Увеличиваем визуальный охват
+      height: 600px;
+      top: 200px;    // Поднимаем выше, чтобы было за текстом
+      left: 25%;    // Центрируем под контентом
+      transform: translateX(-50%);
+      filter: blur(100px);
+      opacity: 0.8; // Делаем чуть ярче, как в дизайне
     }
   }
 }

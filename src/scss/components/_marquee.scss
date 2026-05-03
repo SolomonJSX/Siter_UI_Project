@@ -9,14 +9,14 @@
     display: flex;
     align-items: center;
     gap: 30px; // Отступ между лого и точками
-    animation: scrollMarquee 30s linear infinite;
+    animation: scrollMarquee 25s linear infinite;
     width: max-content;
     flex-shrink: 0;
   }
 
   &__dot {
     color: #dfe6ec;
-    font-size: 24px;
+    font-size: 25px;
     opacity: 0.5;
   }
 
@@ -24,19 +24,6 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
-
-    img,
-    svg {
-      height: 37px; // Регулируй высоту под макет
-      width: auto;
-    }
-
-    &--circle {
-      img,
-      svg {
-        height: 80px; // Круглый логотип обычно крупнее
-      }
-    }
   }
 }
 
@@ -53,24 +40,18 @@
 // Адаптивность под планшет и мобилку
 @media (max-width: 1023px) {
   .marquee {
-    padding: 40px 0;
+    margin: 60px 0;
     &__inner {
-      gap: 40px;
-      padding-right: 40px;
-    }
-    &__logo img {
-      height: 35px;
+      animation-duration: 25s;
     }
   }
 }
 
 @media (max-width: 767px) {
   .marquee {
+    margin: 40px 0;
     &__inner {
       animation-duration: 25s;
-    } // На мобилках лучше чуть быстрее, так как путь короче
-    &__logo img {
-      height: 28px;
     }
   }
 }

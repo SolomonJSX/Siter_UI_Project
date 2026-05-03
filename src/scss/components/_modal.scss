@@ -20,13 +20,13 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: $color-overlay;
     backdrop-filter: blur(8px);
   }
 
   &__content {
     position: relative;
-    background: #f8fafc;
+    background: $color-bg-light;
     width: 100%;
     max-width: 490px;
     padding: 50px 60px;
@@ -45,7 +45,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    background: #fff;
+    background: $color-white;
     border: none;
     width: 36px;
     height: 36px;
@@ -61,7 +61,7 @@
       transform: rotate(90deg);
       background: $color-primary;
       svg path {
-        stroke: #fff;
+        stroke: $color-white;
       }
     }
   }
@@ -89,9 +89,9 @@
 .input-wrapper,
 .textarea-wrapper {
   position: relative;
-  background: #ffffff;
+  background: $color-white;
   border-radius: 5px;
-  padding: 10px 16px 8px;
+  padding: 14px 13px;
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -109,8 +109,9 @@
   .form-label {
     position: absolute;
     top: 20px;
-    left: 16px;
-    font-size: 16px; // Размер в спокойном состоянии (как плейсхолдер)
+    left: 15px;
+    font-size: 15px;
+    font-weight: 400;
     transition: all 0.2s ease;
     pointer-events: none;
     color: #B0C1D0;
@@ -142,9 +143,9 @@
   width: 100%;
   border: none;
   background: transparent;
-  padding: 0;
-  font-size: 16px;
-  font-weight: 500;
+  padding-left: 3px;
+  font-size: 15px;
+  font-weight: 400;
   color: $color-text-main;
   outline: none;
   opacity: 0;
@@ -152,7 +153,7 @@
   margin-top: 10px;
 
   &::placeholder {
-    color: #cbd5e0;
+    color: #B0C1D0;
     font-weight: 400;
   }
 }
@@ -169,6 +170,7 @@
   top: 50%;
   transform: translateY(-50%);
   width: 20px;
+  height: 20px;
   opacity: 0.4;
   pointer-events: none;
 }
@@ -182,7 +184,7 @@
     z-index: 999; // Поднимаем выше всех только когда открыт
 
     .custom-select__header {
-      box-shadow: 0 0 0 1px $color-primary; // Рамка при фокусе
+      box-shadow: 0 0 0 1px transparent; // Рамка при фокусе
     }
 
     .custom-select__arrow {
@@ -201,14 +203,15 @@
       display: block;
     }
     .custom-select__value {
-      color: #343037; // Черный текст
-      font-weight: 600;
+      color: $color-text-main; // Черный текст
+      font-weight: 400;
+      font-size: 15px;
     }
   }
 
   &__header {
-    background: #fff;
-    border-radius: 12px;
+    background: $color-white;
+    border-radius: 5px;
     min-height: 64px;
     padding: 10px 16px;
     display: flex;
@@ -217,20 +220,21 @@
     cursor: pointer;
     user-select: none; // Убираем синее выделение текста
     position: relative;
-    box-shadow: 0px 0px 15px 0px rgba(31, 42, 51, 0.1);
+    box-shadow: 0 0 15px 0 rgba(31, 42, 51, 0.1);
     transition: all 0.2s ease;
   }
 
   &__label {
     display: none;
     font-size: 12px;
-    color: #A0AEC0;
+    color: $color-text-muted;
     margin-bottom: 2px;
   }
 
   &__value {
-    color: #B0C1D0;
-    font-size: 16px;
+    color: $color-input-label;
+    font-size: 15px;
+    font-weight: 400;
     transition: color 0.2s;
   }
 
@@ -248,11 +252,11 @@
   &__dropdown {
     display: none; // ЖЕСТКО скрываем список по умолчанию
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% + 10px);
     left: 0;
     width: 100%;
-    background: #ffffff;
-    border-radius: 12px;
+    background: $color-white;
+    border-radius: 5px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); // Тень стала чуть заметнее
     padding: 8px 0;
     // Огромный z-index для списка, чтобы пробить любые ограничения
@@ -400,7 +404,6 @@
 
   .checkbox-label {
     font-size: 15px;
-    line-height: 1.4;
     color: $color-input-label;
     font-weight: 400;
     line-height: 18px;
