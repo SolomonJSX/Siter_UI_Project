@@ -4,6 +4,20 @@
 // Стили только для экранов от 1024px и выше
 @media (min-width: 1024px) {
   .header {
+    &__logo {
+      display: flex;
+      align-items: center;
+
+      .logo-full { display: block; }
+      .logo-icon { display: none; } // По умолчанию скрываем иконку
+
+      img {
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
     &__mobile-bar,
     &__submenu-header,
     &__submenu-list,
@@ -62,8 +76,10 @@
     &__menu-list {
       display: flex;
       gap: 31px;
+      white-space: nowrap;
       li {
         @include flex-icon(5px, 700);
+        font-size: 15px;
         .icon-arrow {
           border-left: 4px solid transparent;
           border-right: 4px solid transparent;

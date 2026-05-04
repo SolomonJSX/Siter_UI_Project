@@ -3,6 +3,17 @@
 
 @media (max-width: 1023px) {
   .header {
+    &__logo {
+      .logo-full {
+        width: 154px; // Размер по макету
+        height: 30px;
+      }
+
+      .logo-icon {
+        display: none;
+      }
+    }
+
     // Скрываем десктопные части
     &__top, &__main .desktop-only {
       display: none;
@@ -18,7 +29,7 @@
     }
 
     &__mobile-inner {
-      display: flex;             // Ставим логотип и иконки в ряд
+      display: flex; // Ставим логотип и иконки в ряд
       justify-content: space-between;
       align-items: center;
       height: 60px;
@@ -26,9 +37,9 @@
     }
 
     &__mobile-utils {
-      display: flex;             // Ставим иконки и бургер в ряд
+      display: flex; // Ставим иконки и бургер в ряд
       align-items: center;
-      gap: 15px;                 // Расстояние между иконками
+      gap: 15px; // Расстояние между иконками
     }
 
     &__mobile-icon {
@@ -37,7 +48,12 @@
       justify-content: center;
       width: 24px;
       height: 24px;
-      img { width: 20px; height: 20px; object-fit: contain; }
+
+      img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
     }
 
     // БУРГЕР (Возвращаем видимость)
@@ -53,10 +69,19 @@
       cursor: pointer;
       padding: 0;
       z-index: 2101;
+
       &.is-active {
-        span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        span:nth-child(2) { opacity: 0; }
-        span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+
+        span:nth-child(2) {
+          opacity: 0;
+        }
+
+        span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
       }
 
       span {
@@ -109,7 +134,11 @@
 
       .header__back-btn {
         visibility: hidden; // По умолчанию скрыта (на главной странице меню)
-        &.is-visible { visibility: visible; } // Показываем только в подменю
+        &.is-visible {
+          visibility: visible;
+        }
+
+        // Показываем только в подменю
       }
 
       .header__submenu-utils {
@@ -175,10 +204,14 @@
       padding: 20px;
       display: flex;
       gap: 15px;
+
       .lang-btn {
         font-weight: 700;
         color: #ccc;
-        &.is-active { color: $color-primary; }
+
+        &.is-active {
+          color: $color-primary;
+        }
       }
     }
 
@@ -193,7 +226,10 @@
         padding: 15px 0;
         font-weight: 600;
         color: $color-text-main;
-        &:not(:last-child) { border-bottom: 1px solid #eee; }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid #eee;
+        }
       }
     }
 
@@ -209,6 +245,23 @@
         width: 15px;
         height: 15px;
         background: url("../../img/icons/arrow-right.svg") no-repeat center / contain;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .header {
+      &__logo {
+        // Скрываем полную версию, показываем только иконку
+        .logo-full {
+          display: none;
+        }
+
+        .logo-icon {
+          display: block;
+          width: 32px; // Задай размер иконки по макету
+          height: 32px;
+        }
       }
     }
   }
